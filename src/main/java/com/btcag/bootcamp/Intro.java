@@ -4,12 +4,14 @@ public class Intro {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+        String Username;
+
+        do {
+            System.out.println("Bitte geben sie Ihren Nutzernamen ein:");
+            Username= scanner.nextLine();
+        }while(Username.length()>16 || Username.length()<4);
 
 
-
-        System.out.println("Bitte geben sie Ihren Nutzernamen ein:");
-
-        String Username= scanner.nextLine();
 
         System.out.println("Willkommen bei Robot Wars");
                 System.out.println("          __");
@@ -26,6 +28,8 @@ public class Intro {
                 System.out.println("   |  |       |  |");
                 System.out.println("   |__|       |__|");
                 System.out.println("          "+Username);
+
+
 
 
 

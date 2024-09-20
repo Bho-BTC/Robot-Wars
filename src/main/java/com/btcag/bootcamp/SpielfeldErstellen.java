@@ -9,23 +9,33 @@ public class SpielfeldErstellen {
 
         int robot2x = 15;
         int robot2y = 8;
-
-
-        for (int countY = 1; countY <= y; countY++) {
+        int countY = 1;
+        int countX = 1;
+        boolean spaceDrawn = false;
+        while (countY <= y) {
+            spaceDrawn=false;
             System.out.println();
-            System.out.println();
-
-            for (int countX = 1; countX <= x; countX++) {
-                if (countY == robot1y && countX==robot1x){
-                    System.out.print("[ 1 ]  ");
-                } else if (countY == robot2y && countX==robot2x) {
-                    System.out.print("[ 2 ]  ");
-                }else {
-                    System.out.print("[   ]  ");
+            while (countX <= x) {
+                spaceDrawn=false;
+                while (countY == robot1y && countX == robot1x) {
+                    System.out.print("[ 1 ] ");
+                    countX++;
+                    spaceDrawn = true;
+                }
+                while (countY == robot2y && countX == robot2x) {
+                    System.out.print("[ 2 ] ");
+                    countX++;
+                    spaceDrawn = true;
+                }
+                while (!spaceDrawn) {
+                    System.out.print("[   ] ");
+                    countX++;
+                    spaceDrawn =true;
                 }
 
-
             }
+            countY++;
+            countX=1;
 
 
         }
