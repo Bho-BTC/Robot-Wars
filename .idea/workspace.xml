@@ -5,14 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d417813c-a80a-4f68-b403-f124aa41bf8d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Intro.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/SpielfeldErstellen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/AvatarCreation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Intro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Intro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/SpielfeldErstellen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/SpielfeldErstellen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,12 +36,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.AvatarCreation.executor": "Run",
     "Application.Intro.executor": "Run",
     "Application.SpielfeldErstellen.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/BHGROOTH/Repos/ArithmetischeOperationen/src/main/java/org/example/Primzahlen.java",
     "onboarding.tips.debug.path": "C:/Users/BHGROOTH/Repos/RobotWars/src/main/java/com/btcag/bootcamp/Main.java",
     "settings.editor.selected.configurable": "proofread"
   }
