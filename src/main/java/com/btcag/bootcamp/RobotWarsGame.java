@@ -3,18 +3,27 @@ package com.btcag.bootcamp;
 import java.util.Scanner;
 
 public class RobotWarsGame {
-    public static void main(String[] args) {
+    public static int robot1x = 1;
+    public static int robot1y = 7;
 
-        //------------------------------------------Intro---------------------------------------------------
+    public static int robot2x = 15;
+    public static int robot2y = 8;
+
+    public static String getPlayerName() {
         Scanner scanner = new Scanner(System.in);
-        String Username;
+        String username;
 
         do {
             System.out.println("Bitte geben sie Ihren Nutzernamen ein. Mehr als vier zeichen und weniger als 16:");
-            Username = scanner.nextLine();
-        } while (Username.length() > 16 || Username.length() < 4);
+            username = scanner.nextLine();
+        } while (username.length() > 16 || username.length() < 4);
 
+        return username;
+    }
 
+    public static void intro(String username) { //Braucht Username
+
+        //------------------------------------------Intro---------------------------------------------------
         System.out.println("Willkommen bei Robot Wars");
         System.out.println("          __");
         System.out.println("         |==|");
@@ -29,11 +38,14 @@ public class RobotWarsGame {
         System.out.println("   |  |       |  |");
         System.out.println("   |  |       |  |");
         System.out.println("   |__|       |__|");
-        System.out.println("          " + Username);
+        System.out.println("          " + username);
+
+    }
 
 
-        //-----------------------------------------------Robot Auswahl-------------------------------------------------
-
+    public static String[] chooseRobot() {
+        //-----------------------------------------------Robot Auswahl-------------------------------------------------,
+        Scanner scanner = new Scanner(System.in);
 
         String[] robot1 = {
                 "  [ ]   ",
@@ -75,41 +87,42 @@ public class RobotWarsGame {
         } while (chosenRobot > 4 || chosenRobot < 0);
         System.out.println();
         System.out.println("Sie haben Roboter " + chosenRobot + " gewählt.");
-        boolean robotchosen = false;
 
+        if (chosenRobot == 1) {
+            return robot1;
+        }
+        if (chosenRobot == 2) {
+            return robot2;
+        }
+        if (chosenRobot == 3) {
+            return robot3;
+        }
+        return robot1;
+    }
+
+    public static void drawMap(String[] playerRobot) {
         //---------------------------------------------------Spielfeld zeichnen----------------------------------------
 
         int x = 15;
         int y = 15;
-        int robot1x = 1;
-        int robot1y = 7;
 
-        int robot2x = 15;
-        int robot2y = 8;
         int countY = 1;
         int countX = 1;
         boolean spaceDrawn;
         while (countY <= y) {
-            spaceDrawn = false;
             System.out.println();
             while (countX <= x) {
                 spaceDrawn = false;
-                while (countY == robot1y && countX == robot1x) {
+                if (countY == robot1y && countX == robot1x) {
                     System.out.print("[ 1 ] ");
                     countX++;
-                    spaceDrawn = true;
-                }
-                while (countY == robot2y && countX == robot2x) {
+                } else if (countY == robot2y && countX == robot2x) {
                     System.out.print("[ 2 ] ");
                     countX++;
-                    spaceDrawn = true;
-                }
-                while (!spaceDrawn) {
+                } else {
                     System.out.print("[   ] ");
                     countX++;
-                    spaceDrawn = true;
                 }
-
             }
             countY++;
             countX = 1;
@@ -118,36 +131,18 @@ public class RobotWarsGame {
         }
         System.out.println();
         System.out.println();
-        int chosenrobot2 = chosenRobot;
-        while (!robotchosen) {
-            while (chosenrobot2 == 1) {
-                int i = 0;
-                while (i < robot1.length) {
-                    System.out.println(robot1[i]);
-                    i++;
-                }
-                chosenrobot2 = 0;
-            }
 
-            while (chosenrobot2 == 2) {
-                int i = 0;
-                while (i < robot2.length) {
-                    System.out.println(robot2[i]);
-                    i++;
-                }
-                chosenrobot2 = 0;
-            }
 
-            while (chosenrobot2 == 3) {
-                int i = 0;
-                while (i < robot3.length) {
-                    System.out.println(robot3[i]);
-                    i++;
-                }
-                chosenrobot2 = 0;
-            }
-            robotchosen=true;
-        }
+
+
+    }
+
+
+    public static void main(String[] args) {
+        intro(getPlayerName());
+
+
+
 
 
     }
