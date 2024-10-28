@@ -4,34 +4,8 @@ import java.util.Scanner;
 
 public class RobotWarsGame {
     public static boolean checkWin = false;
-
-    public static String getPlayerName() {
-        Scanner scanner = new Scanner(System.in);
-        String username;
-
-        do {
-            System.out.println("Bitte geben sie Ihren Nutzernamen ein. Mehr als drei zeichen und weniger als 16:");
-            username = scanner.nextLine();
-        } while (username.length() > 16 || username.length() < 3);
-
-        return username;
-    }
-
-    public static String getEnemyName() {
-        Scanner scanner = new Scanner(System.in);
-        String username;
-
-        do {
-            System.out.println("Bitte geben sie den Namens des zweiten Spielers ein. Mehr als drei zeichen und weniger als 16:");
-            username = scanner.nextLine();
-        } while (username.length() > 16 || username.length() < 3);
-
-        return username;
-    }
-
-
-    public static void intro(String username) { //Braucht Username
-
+    //-------------------------------------Spielt das Intro, braucht Namen des Nutzers.
+    public static void intro(String username) {
         //------------------------------------------Intro---------------------------------------------------
         System.out.println("Willkommen bei Robot Wars");
         System.out.println("          __");
@@ -52,85 +26,30 @@ public class RobotWarsGame {
     }
 
 
-    public static String chooseRobotAvatar() {
-        //-----------------------------------------------Robot Auswahl-------------------------------------------------,
-        Scanner scanner = new Scanner(System.in);
-        String input;
-
-        do {
-            System.out.println("Geben sie ein zugelassenes ASCII Zeichen an, das ihren Roboter auf dem Spielfeld darstellen soll.");
-            input = scanner.nextLine();
-        } while (input.length() > 1);
-
-        return input;
-    }
-
-    public static String chooseEnemyAvatar() {
-        //-----------------------------------------------Robot Auswahl-------------------------------------------------,
-        Scanner scanner = new Scanner(System.in);
-        String input;
-
-        do {
-            System.out.println("Geben sie ein zugelassenes ASCII Zeichen an, das den Roboter des zweiten Spielers auf dem Spielfeld darstellen soll.");
-            input = scanner.nextLine();
-        } while (input.length() > 1);
-
-        return input;
-    }
-
-
-    public static void drawMap(int[] robot, int[] robot2, String avatarRobot2, String avatar) {
-        //---------------------------------------------------Spielfeld zeichnen----------------------------------------
-        // braucht array mit postionen und avatar von beiden spielern, gibt das Spielfeld auf konsole aus
-        int x = 15;
-        int y = 15;
-
-        int countY = 1;
-        int countX = 1;
-        while (countY <= y) {
-            System.out.println();
-            while (countX <= x) {
-                if (countY == robot[0] && countX == robot[1]) {
-                    System.out.print("[ " + avatar + " ] ");
-                    countX++;
-                } else if (countY == robot2[0] && countX == robot2[1]) {
-                    System.out.print("[ " + avatarRobot2 + " ] ");
-                    countX++;
-                } else {
-                    System.out.print("[   ] ");
-                    countX++;
-                }
-            }
-            countY++;
-            countX = 1;
-        }
-        System.out.println();
-    }
-
-    public static boolean validDirection(String direction, String action, int[] playerYX, int[] enemyYX) {
+    //Validierung von Richtungswahl beim Roboter Bewegen/Angreifen
+    public static boolean validDirection(String direction, String action, Robot turningRobot,Robot notTurningRobot) {
         if (!direction.equals("O") && !direction.equals("R") && !direction.equals("U") && !direction.equals("L")) {
-            return false;
+            return false;//wenn Richtung nicht Oben, Rechts, Unten oder Links dann falsch
         } else {
-            //für bewegen
-            if (action.equals("B")) {
+            if (action.equals("B")) { //Validierung fürs Bewegen
                 switch (direction) {
                     case "O":
-                        if (playerYX[0] - 1 == enemyYX[0] && playerYX[1] == enemyYX[1] || playerYX[0] - 1 < 1) {
+                        if (turningRobot.y - 1 == notTurningRobot.y && turningRobot.x == notTurningRobot.x || turningRobot.y - 1 < 1) {
                             return false;
                         }
                         break;
                     case "R":
-                        if (playerYX[1] + 1 == enemyYX[1] && playerYX[0] == enemyYX[0] || playerYX[1] + 1 > 15) {
+                        if (turningRobot.x + 1 == notTurningRobot.x && turningRobot.y == notTurningRobot.y || turningRobot.x + 1 > 15) {
                             return false;
                         }
                         break;
                     case "U":
-                        if (playerYX[0] + 1 == enemyYX[0] && playerYX[1] == enemyYX[1] || playerYX[0] + 1 > 15) {
+                        if (turningRobot.y + 1 == notTurningRobot.y && turningRobot.x == notTurningRobot.x || turningRobot.y + 1 > 15) {
                             return false;
                         }
                         break;
                     case "L":
-                        if (playerYX[1] - 1 == enemyYX[1] && playerYX[0] == enemyYX[0] || playerYX[1] - 1 < 1) {
+                        if (turningRobot.x - 1 == notTurningRobot.x && turningRobot.y==notTurningRobot.y || turningRobot.x - 1 < 1) {
                             return false;
                         }
                         break;
@@ -142,10 +61,10 @@ public class RobotWarsGame {
     }
 
 
-    public static int[] turn(int[] playerYX, int[] enemyYX, String playerName) {
+    public static void turn(Robot turningRobot, Robot notTurningRobot, String playerName) {
         Scanner scanner = new Scanner(System.in);
-        String input = "";
-        String direction = "";
+        String input;
+        String direction;
 
         do {
             System.out.println();
@@ -155,81 +74,70 @@ public class RobotWarsGame {
         do {
             System.out.println();
             System.out.println("In welche Richtung? Oben, Rechts, Unten, Links(O,R,U,L)");
-            System.out.println("Du kannst nicht auf das selbe Feld, auf dem dein Gegner steht und auch nicht aus dem Spielfeld gehen.");
+            System.out.println("Du kannst nicht auf das selbe Feld gehen, auf dem dein Gegner steht und auch nicht aus dem Spielfeld gehen.");
+            System.out.println("Angreifen ist in jede Richtung möglich, hat 1 Feld Reichweite");
             direction = scanner.nextLine();
-        } while (!validDirection(direction, input, playerYX, enemyYX));
+        } while (!validDirection(direction, input, turningRobot, notTurningRobot));
 
 
         switch (direction) {
             case "O":
-                if (playerYX[0] - 1 == enemyYX[0] && playerYX[1] == enemyYX[1] && input.equals("A")) {
+                if (turningRobot.y - 1 == notTurningRobot.y && turningRobot.x == notTurningRobot.x && input.equals("A")) {
                     checkWin = true;
                     System.out.println("Du hast getroffen, yippie");
                 } else if (input.equals("B")) {
-                    playerYX[0] -= 1;
+                    turningRobot.y -= 1;
                 }
                 break;
             case "R":
-                if (playerYX[1] + 1 == enemyYX[1] && playerYX[0] == enemyYX[0] && input.equals("A")) {
+                if (turningRobot.x + 1 == notTurningRobot.x && turningRobot.y == notTurningRobot.y && input.equals("A")) {
                     checkWin = true;
                     System.out.println("Du hast getroffen, yippie");
                 } else if (input.equals("B")) {
-                    playerYX[1] += 1;
+                    turningRobot.x += 1;
                 }
                 break;
             case "U":
-                if (playerYX[0] + 1 == enemyYX[0] && playerYX[1] == enemyYX[1] && input.equals("A")) {
+                if (turningRobot.y + 1 == notTurningRobot.y && turningRobot.x == notTurningRobot.x && input.equals("A")) {
                     checkWin = true;
                     System.out.println("Du hast getroffen, yippie");
                 } else if (input.equals("B")) {
-                    playerYX[0] += 1;
+                    turningRobot.y += 1;
                 }
                 break;
             case "L":
-                if (playerYX[1] - 1 == enemyYX[1] && playerYX[0] == enemyYX[0] && input.equals("A")) {
+                if (turningRobot.x - 1 == notTurningRobot.x && turningRobot.y == notTurningRobot.y && input.equals("A")) {
                     checkWin = true;
                     System.out.println("Du hast getroffen, yippie");
-                } else if (input.equals("B")){
-                    playerYX[1] -= 1;
+                } else if (input.equals("B")) {
+                    turningRobot.x -= 1;
                 }
                 break;
         }
-
-
-        return playerYX;
     }
 
-
     public static void main(String[] args) {
-        String playerName = getPlayerName();
-        String playerAvatar = chooseRobotAvatar();
-        String player2Name = getEnemyName();
-        String player2Avatar = chooseEnemyAvatar();
-
+        User user1 = new User("Spieler 1");
+        Robot player1 = new Robot();
+        User user2 = new User("Spieler 2");
+        Robot player2 = new Robot();
         int turnCount = 1;
-
-
-        //index 0 = y | index 1 = x
-        int[] player = {7, 1};
-        int[] player2 = {7, 15};
-        intro(playerName);
-
-
+        player1.x=1;
+        player1.y=7;
+        player2.x=15;
+        player2.y=7;
+        intro(user1.name);
+        Map map=new Map(15,15);
         while (!checkWin) {
             if (turnCount % 2 != 0) {
-                drawMap(player, player2, player2Avatar, playerAvatar);
-                player = turn(player, player2, playerName);
+                map.drawMap(player1, player2);
+                turn(player1, player2, user1.name);
                 turnCount++;
-
             } else {
-                drawMap(player, player2, player2Avatar, playerAvatar);
-                player2 = turn(player2, player, player2Name);
+                map.drawMap(player1, player2);
+                turn(player2, player1, user2.name);
                 turnCount++;
-
             }
-
         }
-
-
     }
 }
