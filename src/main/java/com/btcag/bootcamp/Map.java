@@ -16,10 +16,10 @@ public class Map {
             System.out.println();
             while (countX <= maxX) {
                 if (countY == robot1.y && countX == robot1.x) {
-                    System.out.print("[ " + robot1.Avatar + " ] ");
+                    System.out.print("[ " + robot1.avatar + " ] ");
                     countX++;
                 } else if (countY == robot2.y && countX == robot2.x) {
-                    System.out.print("[ " + robot2.Avatar + " ] ");
+                    System.out.print("[ " + robot2.avatar + " ] ");
                     countX++;
                 } else {
                     System.out.print("[   ] ");
