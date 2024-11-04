@@ -83,6 +83,10 @@ public class Robot {
         return accuracy;
     }
 
+    public int getMovement() {
+        return movement;
+    }
+
 
     public void hit(Robot targetRobot) {
         if (targetRobot.currentShield < this.dmg) {

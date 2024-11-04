@@ -109,10 +109,10 @@ public class RobotWarsGame {
 
     public static boolean inRange(Robot robot1, Robot robot2) {
         //check ob robot2 x in range von robot1 x ist
-        return (    (robot1.getX() + robot1.getRange() >= robot2.getX() && robot2.getX() > robot1.getX()) && (robot1.getY() + robot1.getRange() >= robot2.getY() && robot2.getY() > robot1.getY())
-                ||  (robot1.getX() + robot1.getRange() >= robot2.getX() && robot2.getX() > robot1.getX()) && (robot1.getY() - robot1.getRange() <= robot2.getY() && robot2.getY() < robot1.getY())
-                ||  (robot1.getX() - robot1.getRange() <= robot2.getX() && robot2.getX() < robot1.getX()) && (robot1.getY() + robot1.getRange() >= robot2.getY() && robot2.getY() > robot1.getY())
-                ||  (robot1.getX() - robot1.getRange() <= robot2.getX() && robot2.getX() < robot1.getX()) && (robot1.getY() - robot1.getRange() <= robot2.getY() && robot2.getY() < robot1.getY()));
+        return ((robot1.getX() + robot1.getRange() >= robot2.getX() && robot2.getX() > robot1.getX()) && (robot1.getY() + robot1.getRange() >= robot2.getY() && robot2.getY() > robot1.getY())
+                || (robot1.getX() + robot1.getRange() >= robot2.getX() && robot2.getX() > robot1.getX()) && (robot1.getY() - robot1.getRange() <= robot2.getY() && robot2.getY() < robot1.getY())
+                || (robot1.getX() - robot1.getRange() <= robot2.getX() && robot2.getX() < robot1.getX()) && (robot1.getY() + robot1.getRange() >= robot2.getY() && robot2.getY() > robot1.getY())
+                || (robot1.getX() - robot1.getRange() <= robot2.getX() && robot2.getX() < robot1.getX()) && (robot1.getY() - robot1.getRange() <= robot2.getY() && robot2.getY() < robot1.getY()));
     }
 
 
@@ -129,22 +129,29 @@ public class RobotWarsGame {
         intro(user1.name, user2.name);
         Map map = new Map(15, 15);
         while (!checkWin(player1, player2)) {
-            map.drawMap(player1, player2);
             if (lastTurn == 1) {
-                player1.printStats();
-                turn(player1, player2, user1.name);
+                for (int i = player1.getMovement(); i > 0; i--) {
+                    map.drawMap(player1, player2);
+                    player1.printStats();
+                    turn(player1, player2, user1.name);
+                }
+                map.drawMap(player1, player2);
                 if (inRange(player1, player2)) {
                     player1.hit(player2);
-                    System.out.println(user1.name+" hat "+ user2.name+" getroffen.");
+                    System.out.println(user1.name + " hat " + user2.name + " getroffen.");
                     System.out.println();
                 }
                 lastTurn = 2;
             } else {
-                player2.printStats();
-                turn(player2, player1, user2.name);
+                for (int i = player2.getMovement(); i > 0; i--) {
+                    map.drawMap(player1, player2);
+                    player2.printStats();
+                    turn(player2, player1, user2.name);
+                }
+                map.drawMap(player1, player2);
                 if (inRange(player2, player1)) {
                     player2.hit(player1);
-                    System.out.println(user2.name+" hat "+ user1.name+" getroffen.");
+                    System.out.println(user2.name + " hat " + user1.name + " getroffen.");
                     System.out.println();
                 }
                 lastTurn = 1;
