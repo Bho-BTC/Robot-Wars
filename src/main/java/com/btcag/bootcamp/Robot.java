@@ -19,7 +19,7 @@ public class Robot {
     private int areaOfEffect = 1;
     private int accuracy = 1;
     private int skillPoints = 10;
-    private int actionPoints = 1;
+    private int movement = 3;
 
     public Robot() {
         chooseRobotAvatar("Geben sie ein zugelassenes ASCII Zeichen an, mit dem der Roboter auf dem Spielfeld ausgegeben soll.");
@@ -152,6 +152,7 @@ public class Robot {
             }
             skillPoints--;
         }
+        printStats();
     }
 
 
@@ -224,7 +225,4 @@ public class Robot {
         this.skillPoints = skillPoints;
     }
 
-    public void setActionPoints(int actionPoints) {
-        this.actionPoints = actionPoints;
-    }
 }

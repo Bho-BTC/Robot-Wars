@@ -30,89 +30,69 @@ public class RobotWarsGame {
 
 
     //Validierung von Richtungswahl beim Roboter Bewegen/Angreifen
-    public static boolean validDirection(String direction, String action, Robot turningRobot, Robot notTurningRobot) {
+    public static boolean validDirection(String direction, Robot turningRobot, Robot notTurningRobot) {
         if (!direction.equals("W") && !direction.equals("A") && !direction.equals("S") && !direction.equals("D")) {
             return false;//wenn Richtung nicht W, A, S oder D dann falsch
-        } else {
-            if (action.equals("B")) { //Validierung fürs Bewegen
-                switch (direction) {
-                    case "W":
-                        if (turningRobot.getY() - 1 == notTurningRobot.getY() && turningRobot.getX() == notTurningRobot.getX() || turningRobot.getY() - 1 < 1) {
-                            return false;
-                        }
-                        break;
-                    case "D":
-                        if (turningRobot.getX() + 1 == notTurningRobot.getX() && turningRobot.getY() == notTurningRobot.getY() || turningRobot.getX() + 1 > 15) {
-                            return false;
-                        }
-                        break;
-                    case "S":
-                        if (turningRobot.getY() + 1 == notTurningRobot.getY() && turningRobot.getX() == notTurningRobot.getX() || turningRobot.getY() + 1 > 15) {
-                            return false;
-                        }
-                        break;
-                    case "A":
-                        if (turningRobot.getX() - 1 == notTurningRobot.getX() && turningRobot.getY() == notTurningRobot.getY() || turningRobot.getX() - 1 < 1) {
-                            return false;
-                        }
-                        break;
-                }
-            }
-
-            return true;
         }
+        switch (direction) {
+            case "W":
+                if (turningRobot.getY() - 1 == notTurningRobot.getY() && turningRobot.getX() == notTurningRobot.getX() || turningRobot.getY() - 1 < 1) {
+                    return false;
+                }
+                break;
+
+            case "D":
+                if (turningRobot.getX() + 1 == notTurningRobot.getX() && turningRobot.getY() == notTurningRobot.getY() || turningRobot.getX() + 1 > 15) {
+                    return false;
+                }
+                break;
+
+            case "S":
+                if (turningRobot.getY() + 1 == notTurningRobot.getY() && turningRobot.getX() == notTurningRobot.getX() || turningRobot.getY() + 1 > 15) {
+                    return false;
+                }
+                break;
+
+            case "A":
+                if (turningRobot.getX() - 1 == notTurningRobot.getX() && turningRobot.getY() == notTurningRobot.getY() || turningRobot.getX() - 1 < 1) {
+                    return false;
+                }
+                break;
+        }
+        return true;
     }
 
 
     public static void turn(Robot turningRobot, Robot notTurningRobot, String playerName) {
         Scanner scanner = new Scanner(System.in);
-        String input;
         String direction;
-
         do {
             System.out.println();
-            System.out.println(playerName + ", wollen sie angreifen (A) oder sich bewegen (B)?");
-            input = scanner.nextLine();
-        } while (!input.equals("A") && !input.equals("B"));
-        do {
-            System.out.println();
-            System.out.println("In welche Richtung? Oben, Rechts, Unten, Links(W, A, S, D)");
+            System.out.println("In welche Richtung willst du gehen? (W, A, S, D) oder P um nichts zu tun.");
             System.out.println("Du kannst nicht auf das selbe Feld gehen, auf dem dein Gegner steht und auch nicht aus dem Spielfeld gehen.");
-            System.out.println("Angreifen ist in jede Richtung möglich, hat 1 Feld Reichweite");
             direction = scanner.nextLine();
-        } while (!validDirection(direction, input, turningRobot, notTurningRobot));
+        } while (!validDirection(direction, turningRobot, notTurningRobot));
 
 
         switch (direction) {
             case "W":
-                if (turningRobot.getY() - 1 == notTurningRobot.getY() && turningRobot.getX() == notTurningRobot.getX() && input.equals("A")) {
-                    turningRobot.hit(notTurningRobot);
-                } else if (input.equals("B")) {
-                    turningRobot.setY(turningRobot.getY()-1);
-                }
+                turningRobot.setY(turningRobot.getY() - 1);
                 break;
+
             case "D":
-                if (turningRobot.getX() + 1 == notTurningRobot.getX() && turningRobot.getY() == notTurningRobot.getY() && input.equals("A")) {
-                    turningRobot.hit(notTurningRobot);
-                } else if (input.equals("B")) {
-                    turningRobot.setX(turningRobot.getX()+1);
-                }
+                turningRobot.setX(turningRobot.getX() + 1);
                 break;
+
             case "S":
-                if (turningRobot.getY()+ 1 == notTurningRobot.getY() && turningRobot.getX() == notTurningRobot.getX() && input.equals("A")) {
-                    turningRobot.hit(notTurningRobot);
-                } else if (input.equals("B")) {
-                    turningRobot.setY(turningRobot.getY()+1);
-                }
+                turningRobot.setY(turningRobot.getY() + 1);
                 break;
+
             case "A":
-                if (turningRobot.getX() - 1 == notTurningRobot.getX() && turningRobot.getY() == notTurningRobot.getY() && input.equals("A")) {
-                    turningRobot.hit(notTurningRobot);
-                } else if (input.equals("B")) {
-                    turningRobot.setX(turningRobot.getX()-1);
-                }
+                turningRobot.setX(turningRobot.getX() - 1);
                 break;
         }
+
+
     }
 
     public static String getWinner(Robot robot1, Robot robot2, User user1, User user2) {
@@ -124,6 +104,15 @@ public class RobotWarsGame {
             return "unentschieden";
         }
 
+    }
+
+
+    public static boolean inRange(Robot robot1, Robot robot2) {
+        //check ob robot2 x in range von robot1 x ist
+        return (    (robot1.getX() + robot1.getRange() >= robot2.getX() && robot2.getX() > robot1.getX()) && (robot1.getY() + robot1.getRange() >= robot2.getY() && robot2.getY() > robot1.getY())
+                ||  (robot1.getX() + robot1.getRange() >= robot2.getX() && robot2.getX() > robot1.getX()) && (robot1.getY() - robot1.getRange() <= robot2.getY() && robot2.getY() < robot1.getY())
+                ||  (robot1.getX() - robot1.getRange() <= robot2.getX() && robot2.getX() < robot1.getX()) && (robot1.getY() + robot1.getRange() >= robot2.getY() && robot2.getY() > robot1.getY())
+                ||  (robot1.getX() - robot1.getRange() <= robot2.getX() && robot2.getX() < robot1.getX()) && (robot1.getY() - robot1.getRange() <= robot2.getY() && robot2.getY() < robot1.getY()));
     }
 
 
@@ -144,10 +133,20 @@ public class RobotWarsGame {
             if (lastTurn == 1) {
                 player1.printStats();
                 turn(player1, player2, user1.name);
+                if (inRange(player1, player2)) {
+                    player1.hit(player2);
+                    System.out.println(user1.name+" hat "+ user2.name+" getroffen.");
+                    System.out.println();
+                }
                 lastTurn = 2;
             } else {
                 player2.printStats();
                 turn(player2, player1, user2.name);
+                if (inRange(player2, player1)) {
+                    player2.hit(player1);
+                    System.out.println(user2.name+" hat "+ user1.name+" getroffen.");
+                    System.out.println();
+                }
                 lastTurn = 1;
             }
         }
