@@ -9,7 +9,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Map.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Robot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/RobotWarsGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/RobotWarsGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +87,8 @@
       <workItem from="1728456074889" duration="2186000" />
       <workItem from="1730101037170" duration="15746000" />
       <workItem from="1730183931501" duration="13374000" />
-      <workItem from="1730270317384" duration="2374000" />
+      <workItem from="1730270317384" duration="5810000" />
+      <workItem from="1730703747187" duration="3186000" />
     </task>
     <servers />
   </component>

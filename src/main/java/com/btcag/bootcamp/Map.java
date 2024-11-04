@@ -15,11 +15,11 @@ public class Map {
         while (countY <= maxY) {
             System.out.println();
             while (countX <= maxX) {
-                if (countY == robot1.y && countX == robot1.x) {
-                    System.out.print("[ " + robot1.avatar + " ] ");
+                if (countY == robot1.getY() && countX == robot1.getX()) {
+                    System.out.print("[ " + robot1.getAvatar() + " ] ");
                     countX++;
-                } else if (countY == robot2.y && countX == robot2.x) {
-                    System.out.print("[ " + robot2.avatar + " ] ");
+                } else if (countY == robot2.getY() && countX == robot2.getX()) {
+                    System.out.print("[ " + robot2.getAvatar() + " ] ");
                     countX++;
                 } else {
                     System.out.print("[   ] ");
