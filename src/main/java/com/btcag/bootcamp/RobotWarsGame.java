@@ -31,8 +31,8 @@ public class RobotWarsGame {
 
     //Validierung von Richtungswahl beim Roboter Bewegen/Angreifen
     public static boolean validDirection(String direction, Robot turningRobot, Robot notTurningRobot) {
-        if (!direction.equals("W") && !direction.equals("A") && !direction.equals("S") && !direction.equals("D")) {
-            return false;//wenn Richtung nicht W, A, S oder D dann falsch
+        if (!direction.equals("W") && !direction.equals("A") && !direction.equals("S") && !direction.equals("D") && !direction.equals("P")) {
+            return false;//wenn Richtung nicht W, A, S, D oder P dann falsch
         }
         switch (direction) {
             case "W":
@@ -57,6 +57,9 @@ public class RobotWarsGame {
                 if (turningRobot.getX() - 1 == notTurningRobot.getX() && turningRobot.getY() == notTurningRobot.getY() || turningRobot.getX() - 1 < 1) {
                     return false;
                 }
+                break;
+
+            case "P":
                 break;
         }
         return true;
@@ -90,6 +93,9 @@ public class RobotWarsGame {
             case "A":
                 turningRobot.setX(turningRobot.getX() - 1);
                 break;
+
+            case "P":
+                break;
         }
 
 
@@ -109,10 +115,14 @@ public class RobotWarsGame {
 
     public static boolean inRange(Robot robot1, Robot robot2) {
         //check ob robot2 x in range von robot1 x ist
-        return ((robot1.getX() + robot1.getRange() >= robot2.getX() && robot2.getX() > robot1.getX()) && (robot1.getY() + robot1.getRange() >= robot2.getY() && robot2.getY() > robot1.getY())
-                || (robot1.getX() + robot1.getRange() >= robot2.getX() && robot2.getX() > robot1.getX()) && (robot1.getY() - robot1.getRange() <= robot2.getY() && robot2.getY() < robot1.getY())
-                || (robot1.getX() - robot1.getRange() <= robot2.getX() && robot2.getX() < robot1.getX()) && (robot1.getY() + robot1.getRange() >= robot2.getY() && robot2.getY() > robot1.getY())
-                || (robot1.getX() - robot1.getRange() <= robot2.getX() && robot2.getX() < robot1.getX()) && (robot1.getY() - robot1.getRange() <= robot2.getY() && robot2.getY() < robot1.getY()));
+        //Rechts und Oben
+        return ((robot1.getX() + robot1.getRange() >= robot2.getX() && robot2.getX() >= robot1.getX()) && (robot1.getY() + robot1.getRange() >= robot2.getY() && robot2.getY() >= robot1.getY())
+                //Rechts und Unten
+                || (robot1.getX() + robot1.getRange() >= robot2.getX() && robot2.getX() >= robot1.getX()) && (robot1.getY() - robot1.getRange() <= robot2.getY() && robot2.getY() <= robot1.getY())
+                //Links und Oben
+                || (robot1.getX() - robot1.getRange() <= robot2.getX() && robot2.getX() <= robot1.getX()) && (robot1.getY() + robot1.getRange() >= robot2.getY() && robot2.getY() >= robot1.getY())
+                //Links und Unten
+                || (robot1.getX() - robot1.getRange() <= robot2.getX() && robot2.getX() <= robot1.getX()) && (robot1.getY() - robot1.getRange() <= robot2.getY() && robot2.getY() <= robot1.getY()));
     }
 
 
