@@ -5,13 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b8cdac2c-a976-4a73-b451-410845c54d5f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/Buffs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/DmgBuff.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/RangeBuff.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/ShieldRegen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/PowerUps.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/RangePowerup.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/ShieldPowerup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/Buffs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/Buffs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/DmgBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/DmgBuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/RangeBuff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/RangeBuff.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/ShieldRegen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/ShieldRegen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/DmgPowerUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/DmgPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/DmgPowerUp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Robot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/RobotWarsGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/RobotWarsGame.java" afterDir="false" />
     </list>
@@ -96,7 +99,7 @@
       <workItem from="1730703747187" duration="21629000" />
       <workItem from="1730787561195" duration="16708000" />
       <workItem from="1730874285934" duration="8542000" />
-      <workItem from="1730886985728" duration="3229000" />
+      <workItem from="1730886985728" duration="8396000" />
     </task>
     <servers />
   </component>

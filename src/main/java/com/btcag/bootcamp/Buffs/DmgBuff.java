@@ -2,7 +2,7 @@ package com.btcag.bootcamp.Buffs;
 
 public class DmgBuff {
     private final int buffValue = 2;
-    private boolean isActive =false;
+    private boolean isActive = false;
 
 
     public boolean getIsActive() {

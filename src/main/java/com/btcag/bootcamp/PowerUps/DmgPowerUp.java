@@ -8,7 +8,7 @@ public class DmgPowerUp {
 
     private int x = 0;
     private int y = 0;
-    private final String avatar = "Dmg";
+    private final String avatar = "(D)";
 
 
     public DmgPowerUp(Robot robot, Robot robot2) {
@@ -35,9 +35,18 @@ public class DmgPowerUp {
     }
 
     public void pickedUpBy(Robot robot, Robot robot2) {
-        robot.buffs.dmgBuff.setActive(true);
-        robot.setDmg(robot.getDmg() + robot.buffs.dmgBuff.getBuffValue());
-        this.rerollXY(robot, robot2);
+
+        if (!robot.buffs.dmgBuff.getIsActive()) {
+            robot.buffs.dmgBuff.setActive(true);
+            robot.setDmg(robot.getDmg() + robot.buffs.dmgBuff.getBuffValue());
+            this.rerollXY(robot, robot2);
+            System.out.println();
+            System.out.println("Der Roboter " + robot.getAvatar() + " hat das Damage PowerUp aufgehoben.");
+        }else{
+            System.out.println();
+            System.out.println("Der Roboter " + robot.getAvatar() + " hat bereits ein Damage PowerUp.");
+        }
+
     }
 
 

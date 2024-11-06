@@ -196,6 +196,9 @@ public class Robot {
         if (this.buffs.dmgBuff.getIsActive()) {
             System.out.println("Dmg Buff is active");
         }
+        if (this.buffs.rangeBuff.getIsActive()) {
+            System.out.println("Range Buff is active");
+        }
         System.out.println();
     }
 

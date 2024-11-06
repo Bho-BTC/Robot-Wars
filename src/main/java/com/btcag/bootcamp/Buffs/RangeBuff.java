@@ -1,8 +1,8 @@
 package com.btcag.bootcamp.Buffs;
 
 public class RangeBuff {
-private final int buffValue = 2;
-private boolean isActive =false;
+    private final int buffValue = 1;
+    private boolean isActive = false;
 
 
     public boolean getIsActive() {
@@ -13,7 +13,7 @@ private boolean isActive =false;
         return buffValue;
     }
 
-    public void setActive(int active) {
-        this.isActive = true;
+    public void setActive(boolean active) {
+        this.isActive = active;
     }
 }

@@ -2,7 +2,7 @@ package com.btcag.bootcamp.Buffs;
 
 public class ShieldRegen {
     private final int buffValue = 2;
-    private boolean isActive =false;
+    private boolean isActive = false;
 
 
     public boolean getIsActive() {
@@ -13,7 +13,7 @@ public class ShieldRegen {
         return buffValue;
     }
 
-    public void setActive(int active) {
-        this.isActive = true;
+    public void setActive(boolean active) {
+        this.isActive = active;
     }
 }
