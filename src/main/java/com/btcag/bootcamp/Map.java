@@ -1,5 +1,7 @@
 package com.btcag.bootcamp;
 
+import com.btcag.bootcamp.PowerUps.DmgPowerUp;
+
 public class Map {
     protected int maxX;
     protected int maxY;
@@ -9,41 +11,32 @@ public class Map {
         this.maxY = maxY;
     }
 
-    public void drawMap(Robot robot1, Robot robot2) {
+    public void drawMap(Robot robot1, Robot robot2, DmgPowerUp dmgPowerUp) {
         int countY = 1;
         int countX = 1;
+        String out;
         while (countY <= maxY) {
             System.out.println();
             while (countX <= maxX) {
-                if (countY == robot1.getY() && countX == robot1.getX()) {
-                    System.out.print("[ " + robot1.getAvatar() + " ] ");
-                    countX++;
+                if (countY == dmgPowerUp.getY()  && countX == dmgPowerUp.getX()) {
+                    out = dmgPowerUp.getAvatar();
+                }else if (countY == robot1.getY() && countX == robot1.getX()) {
+                    out = " " + robot1.getAvatar() + " ";
+
                 } else if (countY == robot2.getY() && countX == robot2.getX()) {
-                    System.out.print("[ " + robot2.getAvatar() + " ] ");
-                    countX++;
+                    out = " " + robot2.getAvatar() + " ";
+
                 } else {
-                    System.out.print("[   ] ");
-                    countX++;
+                    out = "   ";
                 }
+                System.out.print("["+out+"] ");
+                countX++;
             }
             countY++;
             countX = 1;
         }
         System.out.println();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

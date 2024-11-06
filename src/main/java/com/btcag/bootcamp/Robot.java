@@ -1,5 +1,7 @@
 package com.btcag.bootcamp;
 
+import com.btcag.bootcamp.Buffs.Buffs;
+
 import java.util.Scanner;
 
 public class Robot {
@@ -21,13 +23,18 @@ public class Robot {
     private int skillPoints = 10;
     private int movement = 3;
 
+    public Buffs buffs;
+
+
     public Robot() {
+        buffs = new Buffs();
         chooseRobotAvatar("Geben sie ein zugelassenes ASCII Zeichen an, mit dem der Roboter auf dem Spielfeld ausgegeben soll.");
         System.out.println();
         getStats();
         this.currentHp = MaxLifePoints;
         this.currentEnergy = MaxEnergy;
         this.currentShield = MaxShield;
+
 
     }
 
@@ -89,10 +96,18 @@ public class Robot {
 
 
     public void hit(Robot targetRobot) {
-        if (targetRobot.currentShield < this.dmg) {
-            targetRobot.currentHp -= (this.dmg - targetRobot.currentShield);
+        int tempDmg = this.dmg;
+
+        if (targetRobot.currentShield < tempDmg) {
+            tempDmg -= targetRobot.currentShield;
+            targetRobot.currentShield = 0;
+            targetRobot.currentHp -= tempDmg;
         } else {
-            targetRobot.currentShield -= this.dmg;
+            targetRobot.currentShield -= tempDmg;
+        }
+        if (this.buffs.dmgBuff.getIsActive()) {
+            this.buffs.dmgBuff.setActive(false);
+            this.dmg-= this.buffs.dmgBuff.getBuffValue();
         }
         System.out.println("Du hast den Roboter " + targetRobot.avatar + " getroffen. ");
     }
@@ -156,7 +171,15 @@ public class Robot {
             }
             skillPoints--;
         }
-        printStats();
+
+        System.out.println("Leben: " + this.MaxLifePoints);
+        System.out.println("Energie: " + this.MaxEnergy);
+        System.out.println("Schild: " + this.MaxShield);
+        System.out.println("Schaden: " + this.dmg);
+        System.out.println("Reichweite: " + this.range);
+        System.out.println("Fläche: " + this.areaOfEffect);
+        System.out.println("Zielgenauigkeit: " + this.accuracy);
+        System.out.println();
     }
 
 
@@ -169,6 +192,10 @@ public class Robot {
         System.out.println("Range: " + this.range);
         System.out.println("AreaOfEffect: " + this.areaOfEffect);
         System.out.println("Accuracy: " + this.accuracy);
+        System.out.println();
+        if (this.buffs.dmgBuff.getIsActive()) {
+            System.out.println("Dmg Buff is active");
+        }
         System.out.println();
     }
 

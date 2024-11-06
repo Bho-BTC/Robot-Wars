@@ -1,5 +1,7 @@
 package com.btcag.bootcamp;
 
+import com.btcag.bootcamp.PowerUps.DmgPowerUp;
+
 import java.util.Scanner;
 
 public class RobotWarsGame {
@@ -25,18 +27,39 @@ public class RobotWarsGame {
         System.out.println("   |  |       |  |");
         System.out.println("   |__|       |__|");
         System.out.println(username + "      " + username2);
-
     }
 
 
     //Validierung von Richtungswahl beim Roboter Bewegen/Angreifen
     public static boolean validDirection(String direction, Robot turningRobot, Robot notTurningRobot) {
-        if (!direction.equals("W") && !direction.equals("A") && !direction.equals("S") && !direction.equals("D") && !direction.equals("P")) {
+        if (!direction.equals("Q") && !direction.equals("W") && !direction.equals("E")
+                && !direction.equals("A") && !direction.equals("S") && !direction.equals("D")
+                && !direction.equals("Y") && !direction.equals("X") && !direction.equals("P")) {
             return false;//wenn Richtung nicht W, A, S, D oder P dann falsch
         }
         switch (direction) {
+            case "Q":
+                if (turningRobot.getX() - 1 == notTurningRobot.getX() && turningRobot.getY() - 1 == notTurningRobot.getY()
+                        || turningRobot.getX() - 1 < 1 || turningRobot.getY() - 1 < 1) {
+                    return false;
+                }
+                break;
+
             case "W":
                 if (turningRobot.getY() - 1 == notTurningRobot.getY() && turningRobot.getX() == notTurningRobot.getX() || turningRobot.getY() - 1 < 1) {
+                    return false;
+                }
+                break;
+
+            case "E":
+                if (turningRobot.getX() + 1 == notTurningRobot.getX() && turningRobot.getY() - 1 == notTurningRobot.getY()
+                        || turningRobot.getX() + 1 > 15 || turningRobot.getY() - 1 < 1) {
+                    return false;
+                }
+                break;
+
+            case "A":
+                if (turningRobot.getX() - 1 == notTurningRobot.getX() && turningRobot.getY() == notTurningRobot.getY() || turningRobot.getX() - 1 < 1) {
                     return false;
                 }
                 break;
@@ -47,17 +70,27 @@ public class RobotWarsGame {
                 }
                 break;
 
+            case "Y":
+                if (turningRobot.getX() - 1 == notTurningRobot.getX() && turningRobot.getY() + 1 == notTurningRobot.getY()
+                        || turningRobot.getX() - 1 < 1 || turningRobot.getY() + 1 > 15) {
+                    return false;
+                }
+                break;
+
+            case "X":
+                if (turningRobot.getX() + 1 == notTurningRobot.getX() && turningRobot.getY() + 1 == notTurningRobot.getY()
+                        || turningRobot.getX() + 1 > 15 || turningRobot.getY() + 1 > 15) {
+                    return false;
+                }
+                break;
+
+
             case "S":
                 if (turningRobot.getY() + 1 == notTurningRobot.getY() && turningRobot.getX() == notTurningRobot.getX() || turningRobot.getY() + 1 > 15) {
                     return false;
                 }
                 break;
 
-            case "A":
-                if (turningRobot.getX() - 1 == notTurningRobot.getX() && turningRobot.getY() == notTurningRobot.getY() || turningRobot.getX() - 1 < 1) {
-                    return false;
-                }
-                break;
 
             case "P":
                 break;
@@ -71,27 +104,48 @@ public class RobotWarsGame {
         String direction;
         do {
             System.out.println();
-            System.out.println("In welche Richtung willst du gehen? (W, A, S, D) oder P um nichts zu tun.");
+            System.out.println(playerName+ ", in welche Richtung willst du gehen? (Q, W, E, A, D, Y, S, X) oder P um nichts zu tun.");
+            System.out.println("Q = hoch-links | W = hoch | E = hoch-rechts | A = links | D = rechts | Y = runter links | S = runter | X = runter-rechts");
             System.out.println("Du kannst nicht auf das selbe Feld gehen, auf dem dein Gegner steht und auch nicht aus dem Spielfeld gehen.");
             direction = scanner.nextLine();
         } while (!validDirection(direction, turningRobot, notTurningRobot));
 
 
         switch (direction) {
+            case "Q":
+                turningRobot.setY(turningRobot.getY() - 1);
+                turningRobot.setX(turningRobot.getX() - 1);
+                break;
+
             case "W":
                 turningRobot.setY(turningRobot.getY() - 1);
+                break;
+
+            case "E":
+                turningRobot.setY(turningRobot.getY() - 1);
+                turningRobot.setX(turningRobot.getX() + 1);
+                break;
+
+            case "A":
+                turningRobot.setX(turningRobot.getX() - 1);
                 break;
 
             case "D":
                 turningRobot.setX(turningRobot.getX() + 1);
                 break;
 
+            case "Y":
+                turningRobot.setY(turningRobot.getY() + 1);
+                turningRobot.setX(turningRobot.getX() - 1);
+                break;
+
             case "S":
                 turningRobot.setY(turningRobot.getY() + 1);
                 break;
 
-            case "A":
-                turningRobot.setX(turningRobot.getX() - 1);
+            case "X":
+                turningRobot.setY(turningRobot.getY() + 1);
+                turningRobot.setX(turningRobot.getX() + 1);
                 break;
 
             case "P":
@@ -99,7 +153,19 @@ public class RobotWarsGame {
         }
 
 
+
     }
+
+
+    public static void checkDmgPowerUp(Robot robot, Robot robot2, DmgPowerUp dmgPowerUp) {
+        if(robot.getX() == dmgPowerUp.getX() && robot.getY() == dmgPowerUp.getY()){
+            dmgPowerUp.pickedUpBy(robot, robot2);
+            System.out.println();
+            System.out.println("Der Roboter "+ robot.getAvatar()+ " hat das Damage PowerUp aufgehoben.");
+
+        }
+    }
+
 
     public static String getWinner(Robot robot1, Robot robot2, User user1, User user2) {
         if (robot1.getCurrentHp() < 1 && robot1.getCurrentHp() < robot2.getCurrentHp()) {
@@ -131,21 +197,26 @@ public class RobotWarsGame {
         Robot player1 = new Robot();
         User user2 = new User("Spieler 2");
         Robot player2 = new Robot();
+        System.out.println("Nach Robotern");
+
         int lastTurn = 1;
         player1.setX(1);
         player1.setY(7);
         player2.setX(15);
         player2.setY(7);
+        DmgPowerUp dmgPowerUp = new DmgPowerUp(player1, player2);
         intro(user1.name, user2.name);
         Map map = new Map(15, 15);
         while (!checkWin(player1, player2)) {
             if (lastTurn == 1) {
                 for (int i = player1.getMovement(); i > 0; i--) {
-                    map.drawMap(player1, player2);
+                    map.drawMap(player1, player2, dmgPowerUp);
                     player1.printStats();
                     turn(player1, player2, user1.name);
+                    checkDmgPowerUp(player1, player2, dmgPowerUp);
+
                 }
-                map.drawMap(player1, player2);
+                map.drawMap(player1, player2, dmgPowerUp);
                 if (inRange(player1, player2)) {
                     player1.hit(player2);
                     System.out.println(user1.name + " hat " + user2.name + " getroffen.");
@@ -154,16 +225,18 @@ public class RobotWarsGame {
                 lastTurn = 2;
             } else {
                 for (int i = player2.getMovement(); i > 0; i--) {
-                    map.drawMap(player1, player2);
+                    map.drawMap(player1, player2, dmgPowerUp);
                     player2.printStats();
                     turn(player2, player1, user2.name);
+                    checkDmgPowerUp(player2, player1, dmgPowerUp);
                 }
-                map.drawMap(player1, player2);
+                map.drawMap(player1, player2, dmgPowerUp);
                 if (inRange(player2, player1)) {
                     player2.hit(player1);
                     System.out.println(user2.name + " hat " + user1.name + " getroffen.");
                     System.out.println();
                 }
+
                 lastTurn = 1;
             }
         }
