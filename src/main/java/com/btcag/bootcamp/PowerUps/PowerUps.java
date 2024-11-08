@@ -9,8 +9,14 @@ public class PowerUps {
 
 
     public PowerUps(Robot robot1, Robot robot2) {
-        this.dmgPowerUp = new DmgPowerUp(robot1, robot2);
-        this.rangePowerUp = new RangePowerup(robot1, robot2, this   );
+        this.dmgPowerUp = new DmgPowerUp();
+        this.rangePowerUp = new RangePowerup();
+        this.shieldPowerUp = new ShieldPowerup();
+
+        this.dmgPowerUp.rerollXY(robot1, robot2, this);
+        this.rangePowerUp.rerollXY(robot1, robot2, this);
+        this.shieldPowerUp.rerollXY(robot1, robot2, this);
+
     }
 
 

@@ -21,7 +21,9 @@ public class Map {
         while (countY <= maxY) {
             System.out.println();
             while (countX <= maxX) {
-                if (countY == powerUps.getRangePowerUp().getY() && countX == powerUps.getRangePowerUp().getX()) {
+                if (countY == powerUps.getShieldPowerUp().getY() && countX == powerUps.getShieldPowerUp().getX()) {
+                    out = powerUps.getShieldPowerUp().getAvatar();
+                }else if (countY == powerUps.getRangePowerUp().getY() && countX == powerUps.getRangePowerUp().getX()) {
                     out = powerUps.getRangePowerUp().getAvatar();
                 } else if (countY == powerUps.getDmgPowerUp().getY() && countX == powerUps.getDmgPowerUp().getX()) {
                     out = powerUps.getDmgPowerUp().getAvatar();

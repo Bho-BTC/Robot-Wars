@@ -11,10 +11,7 @@ public class RangePowerup {
     private final String avatar = "(R)";
 
 
-    public RangePowerup(Robot robot, Robot robot2, PowerUps powerUps) {
-        rerollXY(robot, robot2, powerUps);
 
-    }
 
     public void rerollXY(Robot robot1, Robot robot2, PowerUps powerUps) {
         Random random = new Random();
@@ -32,8 +29,9 @@ public class RangePowerup {
             } while (this.y == tempY);
             this.y = tempY;
         } while (tempX == robot1.getX() && tempY == robot1.getY() || tempX == robot2.getX() && tempY == robot2.getY() ||
-                tempX == powerUps.getDmgPowerUp().getX() && tempY == powerUps.getDmgPowerUp().getY());
-                //add shield condition
+                tempX == powerUps.getDmgPowerUp().getX() && tempY == powerUps.getDmgPowerUp().getY() ||
+                tempX == powerUps.getShieldPowerUp().getX() && tempY == powerUps.getShieldPowerUp().getY());
+
 
     }
 
@@ -47,6 +45,7 @@ public class RangePowerup {
         }else{
             System.out.println();
             System.out.println("Der Roboter " + robot.getAvatar() + " hat bereits eine Range PowerUp.");
+            rerollXY(robot, robot2, powerUps);
         }
     }
 

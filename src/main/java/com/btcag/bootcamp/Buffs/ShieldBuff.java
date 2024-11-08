@@ -1,6 +1,6 @@
 package com.btcag.bootcamp.Buffs;
 
-public class ShieldRegen {
+public class ShieldBuff {
     private final int buffValue = 2;
     private boolean isActive = false;
 
