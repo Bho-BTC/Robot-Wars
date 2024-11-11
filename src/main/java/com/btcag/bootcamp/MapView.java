@@ -1,15 +1,12 @@
 package com.btcag.bootcamp;
 
-import com.btcag.bootcamp.PowerUps.DmgPowerUp;
 import com.btcag.bootcamp.PowerUps.PowerUps;
-import com.btcag.bootcamp.PowerUps.RangePowerup;
-import com.btcag.bootcamp.PowerUps.ShieldPowerup;
 
-public class Map {
+public class MapView {
     protected int maxX;
     protected int maxY;
 
-    public Map(int maxX, int maxY) {
+    public MapView(int maxX, int maxY) {
         this.maxX = maxX;
         this.maxY = maxY;
     }

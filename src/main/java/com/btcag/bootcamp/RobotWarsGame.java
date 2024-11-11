@@ -1,9 +1,6 @@
 package com.btcag.bootcamp;
 
-import com.btcag.bootcamp.PowerUps.DmgPowerUp;
-import com.btcag.bootcamp.PowerUps.PowerUps;
-import com.btcag.bootcamp.PowerUps.RangePowerup;
-import com.btcag.bootcamp.PowerUps.ShieldPowerup;
+import com.btcag.bootcamp.PowerUps.*;
 import org.w3c.dom.ranges.Range;
 
 import java.util.Scanner;
@@ -162,7 +159,7 @@ public class RobotWarsGame {
 
     public static void checkDmgPowerUp(Robot robot, Robot robot2, PowerUps powerUps) {
         if (robot.getX() == powerUps.getDmgPowerUp().getX() && robot.getY() == powerUps.getDmgPowerUp().getY()) {
-            powerUps.getDmgPowerUp().pickedUpBy(robot, robot2, powerUps);
+            DmgPowerUpController.pickedUpBy(robot, robot2, powerUps);
 
 
         }
@@ -170,7 +167,7 @@ public class RobotWarsGame {
 
     public static void checkRangePowerUp(Robot robot, Robot robot2, PowerUps powerUps) {
         if (robot.getX() == powerUps.getRangePowerUp().getX()&& robot.getY() == powerUps.getRangePowerUp().getY()) {
-            powerUps.getRangePowerUp().pickedUpBy(robot, robot2, powerUps);
+            RangePowerUpController.pickedUpBy(robot, robot2, powerUps);
 
 
         }
@@ -178,7 +175,7 @@ public class RobotWarsGame {
 
     public static void checkShieldPowerUp(Robot robot, Robot robot2, PowerUps powerUps) {
         if (robot.getX() == powerUps.getShieldPowerUp().getX()&& robot.getY() == powerUps.getShieldPowerUp().getY()) {
-            powerUps.getShieldPowerUp().pickedUpBy(robot, robot2, powerUps);
+            ShieldPowerUpController.pickedUpBy(robot, robot2, powerUps);
 
 
         }
@@ -245,7 +242,7 @@ public class RobotWarsGame {
         PowerUps powerUps = new PowerUps(player1, player2);
         ShieldPowerup shieldPowerup = new ShieldPowerup();
         intro(user1.name, user2.name);
-        Map map = new Map(15, 15);
+        MapView map = new MapView(15, 15);
         while (!checkWin(player1, player2)) {
             if (lastTurn == 1) {
                 for (int i = player1.getMovement(); i > 0; i--) {
@@ -259,7 +256,7 @@ public class RobotWarsGame {
                 }
                 map.drawMap(player1, player2, powerUps);
                 if (inRange(player1, player2)) {
-                    player1.hit(player2);
+                    RobotController.hit(player2, player1);
                     System.out.println();
                 }
                 lastTurn = 2;
@@ -274,7 +271,7 @@ public class RobotWarsGame {
                 }
                 map.drawMap(player1, player2, powerUps);
                 if (inRange(player2, player1)) {
-                    player2.hit(player1);
+                    RobotController.hit(player1, player2);
                     System.out.println();
                 }
 

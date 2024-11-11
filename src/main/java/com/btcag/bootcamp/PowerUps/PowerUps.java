@@ -13,9 +13,9 @@ public class PowerUps {
         this.rangePowerUp = new RangePowerup();
         this.shieldPowerUp = new ShieldPowerup();
 
-        this.dmgPowerUp.rerollXY(robot1, robot2, this);
-        this.rangePowerUp.rerollXY(robot1, robot2, this);
-        this.shieldPowerUp.rerollXY(robot1, robot2, this);
+        DmgPowerUpController.rerollXY (robot1, robot2, this);
+        RangePowerUpController.rerollXY(robot1, robot2, this);
+        ShieldPowerUpController.rerollXY(robot1, robot2, this);
 
     }
 

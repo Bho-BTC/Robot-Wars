@@ -28,7 +28,7 @@ public class Robot {
 
     public Robot() {
         buffs = new Buffs();
-        chooseRobotAvatar("Geben sie ein zugelassenes ASCII Zeichen an, mit dem der Roboter auf dem Spielfeld ausgegeben soll.");
+        RobotView.chooseRobotAvatar(this, "Geben sie ein zugelassenes ASCII Zeichen an, mit dem der Roboter auf dem Spielfeld ausgegeben soll.");
         System.out.println();
         getStats();
         this.currentHp = MaxLifePoints;
@@ -94,115 +94,6 @@ public class Robot {
         return movement;
     }
 
-
-    public void hit(Robot targetRobot) {
-        int tempDmg = this.dmg;
-
-        if (targetRobot.currentShield < tempDmg) {
-            tempDmg -= targetRobot.currentShield;
-            targetRobot.currentShield = 0;
-            targetRobot.currentHp -= tempDmg;
-        } else {
-            targetRobot.currentShield -= tempDmg;
-        }
-        if (this.buffs.dmgBuff.getIsActive()) {
-            this.buffs.dmgBuff.setActive(false);
-            this.dmg-= this.buffs.dmgBuff.getBuffValue();
-        }
-        System.out.println("Du hast den Roboter " + targetRobot.avatar + " getroffen. ");
-    }
-
-
-    //-----------------------------------------Holt sich ein Zeichen langen Input vom Nutzer, benötigt Nachricht zum Auffordern------------------------------------------
-    public void chooseRobotAvatar(String message) {
-        //-----------------------------------------------Robot Auswahl-------------------------------------------------,
-        Scanner scanner = new Scanner(System.in);
-        String input;
-        do {
-            System.out.println(message);
-            input = scanner.nextLine();
-        } while (input.length() > 1);
-        this.avatar = input;
-    }
-
-    public final void getStats() {
-        Scanner scanner = new Scanner(System.in);
-        int in;
-        while (skillPoints > 0) {
-            do {
-                System.out.println("Geben sie an welchen Stat sie erhöhen wollen. Sie haben noch " + skillPoints + " übrig.");
-                System.out.println("(1) Leben: " + this.MaxLifePoints);
-                System.out.println("(2) Energie: " + this.MaxEnergy);
-                System.out.println("(3) Schild: " + this.MaxShield);
-                System.out.println("(4) Schaden: " + this.dmg);
-                System.out.println("(5) Reichweite: " + this.range);
-                System.out.println("(6) Fläche: " + this.areaOfEffect);
-                System.out.println("(7) Zielgenauigkeit: " + this.accuracy);
-                in = scanner.nextInt();
-            } while (in != 1 && in != 2 && in != 3 && in != 4 && in != 5 && in != 6 && in != 7);
-            switch (in) {
-                case 1:
-                    this.MaxLifePoints++;
-                    break;
-
-                case 2:
-                    this.MaxEnergy++;
-                    break;
-
-                case 3:
-                    this.MaxShield++;
-                    break;
-
-                case 4:
-                    this.dmg++;
-                    break;
-
-                case 5:
-                    this.range++;
-                    break;
-
-                case 6:
-                    this.areaOfEffect++;
-                    break;
-
-                case 7:
-                    this.accuracy++;
-                    break;
-            }
-            skillPoints--;
-        }
-
-        System.out.println("Leben: " + this.MaxLifePoints);
-        System.out.println("Energie: " + this.MaxEnergy);
-        System.out.println("Schild: " + this.MaxShield);
-        System.out.println("Schaden: " + this.dmg);
-        System.out.println("Reichweite: " + this.range);
-        System.out.println("Fläche: " + this.areaOfEffect);
-        System.out.println("Zielgenauigkeit: " + this.accuracy);
-        System.out.println();
-    }
-
-
-    public void printStats() {
-        System.out.println("Stats von " + this.avatar);
-        System.out.println("HP: " + this.currentHp + "/" + this.MaxLifePoints);
-        System.out.println("Energy: " + this.currentEnergy + "/" + this.MaxEnergy);
-        System.out.println("Shield: " + this.currentShield + "/" + this.MaxShield);
-        System.out.println("Damage: " + this.dmg);
-        System.out.println("Range: " + this.range);
-        System.out.println("AreaOfEffect: " + this.areaOfEffect);
-        System.out.println("Accuracy: " + this.accuracy);
-        System.out.println();
-        if (this.buffs.dmgBuff.getIsActive()) {
-            System.out.println("Dmg Buff is active");
-        }
-        if (this.buffs.rangeBuff.getIsActive()) {
-            System.out.println("Range Buff is active");
-        }
-        System.out.println();
-    }
-
-
     public void setX(int x) {
         this.x = x;
     }
@@ -258,5 +149,88 @@ public class Robot {
     public void setSkillPoints(int skillPoints) {
         this.skillPoints = skillPoints;
     }
+
+    public int getSkillPoints() {
+        return skillPoints;
+    }
+
+    public final void getStats(Robot robot) {
+        Scanner scanner = new Scanner(System.in);
+        int in;
+        while (skillPoints > 0) {
+            do {
+                System.out.println("Geben sie an welchen Stat sie erhöhen wollen. Sie haben noch " + skillPoints + " übrig.");
+                System.out.println("(1) Leben: " + robot.getMaxLifePoints());
+                System.out.println("(2) Energie: " + robot.getMaxEnergy());
+                System.out.println("(3) Schild: " + robot.getMaxShield());
+                System.out.println("(4) Schaden: " + robot.getDmg());
+                System.out.println("(5) Reichweite: " + robot.getRange());
+                System.out.println("(6) Fläche: " + robot.getAreaOfEffect());
+                System.out.println("(7) Zielgenauigkeit: " + robot.getAccuracy());
+                in = scanner.nextInt();
+            } while (in != 1 && in != 2 && in != 3 && in != 4 && in != 5 && in != 6 && in != 7);
+            switch (in) {
+                case 1:
+                    robot.setMaxLifePoints(robot.getMaxLifePoints()+1);
+                    break;
+
+                case 2:
+                    robot.setMaxEnergy(robot.getMaxEnergy()+1);
+                    break;
+
+                case 3:
+                    robot.setMaxShield(robot.getMaxShield()+1);
+                    break;
+
+                case 4:
+                    robot.setDmg(robot.getDmg()+1);
+                    break;
+
+                case 5:
+                    robot.setRange(robot.getRange()+1);
+                    break;
+
+                case 6:
+                    robot.setAreaOfEffect(robot.getAreaOfEffect()+1);
+                    break;
+
+                case 7:
+                    robot.setAccuracy(robot.getAccuracy()+1);
+                    break;
+            }
+            robot.setSkillPoints(robot.getSkillPoints()-1);
+        }
+
+        System.out.println("Leben: " + robot.getMaxLifePoints());
+        System.out.println("Energie: " + robot.getMaxLifePoints());
+        System.out.println("Schild: " + robot.getMaxShield());
+        System.out.println("Schaden: " + robot.getDmg());
+        System.out.println("Reichweite: " + robot.getRange());
+        System.out.println("Fläche: " + robot.getAreaOfEffect());
+        System.out.println("Zielgenauigkeit: " + robot.getAccuracy());
+        System.out.println();
+    }
+
+
+    public void printStats() {
+        System.out.println("Stats von " + this.avatar);
+        System.out.println("HP: " + this.currentHp + "/" + this.MaxLifePoints);
+        System.out.println("Energy: " + this.currentEnergy + "/" + this.MaxEnergy);
+        System.out.println("Shield: " + this.currentShield + "/" + this.MaxShield);
+        System.out.println("Damage: " + this.dmg);
+        System.out.println("Range: " + this.range);
+        System.out.println("AreaOfEffect: " + this.areaOfEffect);
+        System.out.println("Accuracy: " + this.accuracy);
+        System.out.println();
+        if (this.buffs.dmgBuff.getIsActive()) {
+            System.out.println("Dmg Buff is active");
+        }
+        if (this.buffs.rangeBuff.getIsActive()) {
+            System.out.println("Range Buff is active");
+        }
+        System.out.println();
+    }
+
+
 
 }

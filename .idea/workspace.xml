@@ -4,16 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b8cdac2c-a976-4a73-b451-410845c54d5f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/ShieldBuff.java" afterDir="false" />
+    <list default="true" id="95554a93-a51d-488a-bdd2-397d59e45264" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/DmgPowerUpController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/RangePowerUpController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/ShieldPowerUpController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/RobotController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/RobotView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/Buffs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/Buffs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/ShieldRegen.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/MapView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/DmgPowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/DmgPowerUp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/PowerUps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/PowerUps.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/RangePowerup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/RangePowerup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/ShieldPowerup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/ShieldPowerup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Robot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/RobotWarsGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/RobotWarsGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,98 +32,61 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6
-}</component>
-  <component name="ProjectId" id="2me32c55QPyMUTeNH2vw2G5Yl9T" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="2ohePVhE8LBC34HhaWYp5fuEtvE" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.RobotWarsBackUp.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RobotWarsGame.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Bho/IdeaProjects/RobotWars/src/main/java/org/example/Main.java&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "C:/Users/BHGROOTH/IdeaProjects/RobotWars/src/main/java/org/example/Main.java",
+    "settings.editor.selected.configurable": "terminal",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="b8cdac2c-a976-4a73-b451-410845c54d5f" name="Changes" comment="" />
-      <created>1727423010071</created>
+      <changelist id="95554a93-a51d-488a-bdd2-397d59e45264" name="Changes" comment="" />
+      <created>1731326213357</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1727423010071</updated>
-      <workItem from="1727423011091" duration="731000" />
-      <workItem from="1727431034439" duration="4601000" />
-      <workItem from="1727672460908" duration="12315000" />
-      <workItem from="1727687789111" duration="6204000" />
-      <workItem from="1727699796644" duration="2182000" />
-      <workItem from="1727714052942" duration="4000" />
-      <workItem from="1727973400752" duration="2000" />
-      <workItem from="1727988089200" duration="2000" />
-      <workItem from="1728052378200" duration="8000" />
-      <workItem from="1728052980509" duration="6000" />
-      <workItem from="1728168835085" duration="2000" />
-      <workItem from="1728278190843" duration="4000" />
-      <workItem from="1728278396336" duration="15000" />
-      <workItem from="1728368317622" duration="2373000" />
-      <workItem from="1728381689956" duration="2323000" />
-      <workItem from="1728385518722" duration="2813000" />
-      <workItem from="1728413110438" duration="2000" />
-      <workItem from="1728456074889" duration="2186000" />
-      <workItem from="1730101037170" duration="15746000" />
-      <workItem from="1730183931501" duration="13374000" />
-      <workItem from="1730270317384" duration="5810000" />
-      <workItem from="1730703747187" duration="21629000" />
-      <workItem from="1730787561195" duration="16708000" />
-      <workItem from="1730874285934" duration="8542000" />
-      <workItem from="1730886985728" duration="9980000" />
-      <workItem from="1730960685496" duration="6018000" />
-      <workItem from="1730985438267" duration="3184000" />
-      <workItem from="1731048951087" duration="894000" />
-      <workItem from="1731061363985" duration="5382000" />
+      <updated>1731326213357</updated>
+      <workItem from="1731326214478" duration="4632000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.NullPointerException" package="java.lang" />
-          <option name="timeStamp" value="2" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
