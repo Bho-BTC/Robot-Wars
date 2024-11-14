@@ -1,6 +1,6 @@
 package com.btcag.bootcamp.PowerUps;
 
-import com.btcag.bootcamp.Robot;
+import com.btcag.bootcamp.Robots.Robot;
 
 public class PowerUps {
     protected DmgPowerUp dmgPowerUp;

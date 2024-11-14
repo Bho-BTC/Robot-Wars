@@ -1,6 +1,6 @@
 package com.btcag.bootcamp.PowerUps;
 
-import com.btcag.bootcamp.Robot;
+import com.btcag.bootcamp.Robots.Robot;
 
 import java.util.Random;
 

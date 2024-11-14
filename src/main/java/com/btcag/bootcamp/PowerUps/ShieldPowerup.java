@@ -1,9 +1,5 @@
 package com.btcag.bootcamp.PowerUps;
 
-import com.btcag.bootcamp.Robot;
-
-import java.util.Random;
-
 public class ShieldPowerup {
 
     private int x = 0;

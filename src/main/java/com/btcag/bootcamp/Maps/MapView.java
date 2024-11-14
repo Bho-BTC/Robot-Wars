@@ -1,23 +1,18 @@
-package com.btcag.bootcamp;
+package com.btcag.bootcamp.Maps;
 
 import com.btcag.bootcamp.PowerUps.PowerUps;
+import com.btcag.bootcamp.Robots.Robot;
 
 public class MapView {
-    protected int maxX;
-    protected int maxY;
 
-    public MapView(int maxX, int maxY) {
-        this.maxX = maxX;
-        this.maxY = maxY;
-    }
 
-    public void drawMap(Robot robot1, Robot robot2, PowerUps powerUps) {
+    public static void drawMap(Map map, Robot robot1, Robot robot2, PowerUps powerUps) {
         int countY = 1;
         int countX = 1;
         String out;
-        while (countY <= maxY) {
+        while (countY <= map.getMaxY()) {
             System.out.println();
-            while (countX <= maxX) {
+            while (countX <= map.getMaxX()) {
                 if (countY == powerUps.getShieldPowerUp().getY() && countX == powerUps.getShieldPowerUp().getX()) {
                     out = powerUps.getShieldPowerUp().getAvatar();
                 }else if (countY == powerUps.getRangePowerUp().getY() && countX == powerUps.getRangePowerUp().getX()) {
