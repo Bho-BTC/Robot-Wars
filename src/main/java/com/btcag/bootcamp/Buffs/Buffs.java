@@ -1,7 +1,5 @@
 package com.btcag.bootcamp.Buffs;
 
-import com.btcag.bootcamp.PowerUps.RangePowerup;
-import com.btcag.bootcamp.PowerUps.ShieldPowerup;
 
 public class Buffs {
 public DmgBuff dmgBuff;

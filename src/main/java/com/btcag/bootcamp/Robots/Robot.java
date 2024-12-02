@@ -25,13 +25,11 @@ public class Robot {
     private int skillPoints = 10;
     private int movement = 3;
 
-    public Buffs buffs;
 
 
     public Robot(int x, int y, Map map) {
         this.x = x;
         this.y = y;
-        buffs = new Buffs();
         RobotView.chooseRobotAvatar(this, "Geben sie ein zugelassenes ASCII Zeichen an, mit dem der Roboter auf dem Spielfeld ausgegeben soll.");
         RobotController.getStats(this);
         this.currentHp = MaxLifePoints;

@@ -13,6 +13,7 @@ public class RobotWarsGame {
         Robot player1 = new Robot(1,7, map);
         User user2 = new User("Spieler 2");
         Robot player2 = new Robot(15, 7, map);
+        Robot[] robots = new Robot[]{player1, player2};
         System.out.println("Nach Robotern");
         //Zählervariable für Züge erstellen und Roboter Startpositionen festlegen
         int lastTurn = 1;
@@ -33,6 +34,7 @@ public class RobotWarsGame {
                         i=0;
                     }
                 }
+
                 lastTurn = 2;
             } else if (lastTurn == 2) {
                 //Spieler 2

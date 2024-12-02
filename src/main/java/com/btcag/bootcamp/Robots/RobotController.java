@@ -15,10 +15,12 @@ public class RobotController {
         } else {
             targetRobot.setCurrentShield(targetRobot.getCurrentShield()-tempDmg);
         }
-        if (robot.buffs.dmgBuff.getIsActive()) {
-            robot.buffs.dmgBuff.setActive(false);
+        if (robot.isDmgBuffActive()) {
+            robot.setDmgBuffActive(false);
             robot.setDmg( robot.getDmg()-robot.buffs.dmgBuff.getBuffValue());
         }
+
+
         RobotView.printHitMessage(targetRobot);
     }
 
