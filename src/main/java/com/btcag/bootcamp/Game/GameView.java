@@ -25,28 +25,45 @@ public class GameView {
         System.out.println(username + "      " + username2);
     }
 
-public static String getDirectionInput(Robot turningRobot, Robot notTurningRobot, String playerName) {
-    Scanner scanner = new Scanner(System.in);
-    String direction;
-    do {
-        System.out.println();
-        System.out.println(playerName + ", in welche Richtung willst du gehen? (Q, W, E, A, D, Y, S, X) oder P um nichts zu tun.");
-        System.out.println("Q = hoch-links | W = hoch | E = hoch-rechts | A = links | D = rechts | Y = runter links | S = runter | X = runter-rechts");
-        System.out.println("Du kannst nicht auf das selbe Feld gehen, auf dem dein Gegner steht und auch nicht aus dem Spielfeld gehen.");
-        direction = scanner.nextLine();
-    } while (!GameValidationController.validDirection(direction, turningRobot, notTurningRobot));
-    return direction;
-}
+
+    public static boolean askWantAttack(String playerName) {
+        String temp;
+        Scanner sc = new Scanner(System.in);
+        do {
+            System.out.println(playerName + ", willst du den Gegner angreifen? (Y/N)");
+            temp = sc.nextLine();
+        } while (!(temp.equalsIgnoreCase("y")) && !(temp.equalsIgnoreCase("n")));
+
+        if(temp.equalsIgnoreCase("y")) {
+            return true;
+        }else{
+            return false;
+        }
+    }
 
 
-    public static void printWinMessage(String winner){
+    public static String getDirectionInput(Robot turningRobot, Robot notTurningRobot, String playerName) {
+        Scanner scanner = new Scanner(System.in);
+        String direction;
+        do {
+            System.out.println();
+            System.out.println(playerName + ", in welche Richtung willst du gehen? (Q, W, E, A, D, Y, S, X) oder P um nichts zu tun.");
+            System.out.println("Q = hoch-links | W = hoch | E = hoch-rechts | A = links | D = rechts | Y = runter links | S = runter | X = runter-rechts");
+            System.out.println("Du kannst nicht auf das selbe Feld gehen, auf dem dein Gegner steht und auch nicht aus dem Spielfeld gehen.");
+            direction = scanner.nextLine();
+        } while (!GameValidationController.validDirection(direction, turningRobot, notTurningRobot));
+
+        return direction;
+    }
+
+
+    public static void printWinMessage(String winner) {
         if (winner.equals("unentschieden")) {
             System.out.println("Es gibt keinen Gewinner, es ist ein Unentschieden");
         } else {
             System.out.println("Der Gewinner ist: " + winner + "!");
         }
     }
-
 
 
 }

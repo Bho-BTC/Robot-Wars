@@ -82,20 +82,22 @@ public class GameValidationController {
         if ((robot1.getX() + robot1.getRange() >= robot2.getX() && robot2.getX() >= robot1.getX()) && (robot1.getY() + robot1.getRange() >= robot2.getY() && robot2.getY() >= robot1.getY())
                 //Rechts und Unten
                 || (robot1.getX() + robot1.getRange() >= robot2.getX() && robot2.getX() >= robot1.getX()) && (robot1.getY() - robot1.getRange() <= robot2.getY() && robot2.getY() <= robot1.getY())
-                //Links und Oben
+                //Rechts und Oben
                 || (robot1.getX() - robot1.getRange() <= robot2.getX() && robot2.getX() <= robot1.getX()) && (robot1.getY() + robot1.getRange() >= robot2.getY() && robot2.getY() >= robot1.getY())
                 //Links und Unten
                 || (robot1.getX() - robot1.getRange() <= robot2.getX() && robot2.getX() <= robot1.getX()) && (robot1.getY() - robot1.getRange() <= robot2.getY() && robot2.getY() <= robot1.getY())) {
-            robot1.setRange(robot1.getRange() - robot1.buffs.rangeBuff.getBuffValue());
-            robot1.buffs.rangeBuff.setActive(false);
-            return true;
+            //Links und Oben
+            if(robot1.buffs.rangeBuff.getIsActive()){
+                robot1.setRange(robot1.getRange() - robot1.buffs.rangeBuff.getBuffValue());
+                robot1.buffs.rangeBuff.setActive(false);
+                return true;
+            }else{
+                return true;
+            }
         } else {
             return false;
         }
     }
-
-
-
 
 
 }

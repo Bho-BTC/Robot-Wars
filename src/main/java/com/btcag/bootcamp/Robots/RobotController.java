@@ -1,5 +1,7 @@
 package com.btcag.bootcamp.Robots;
 
+import com.btcag.bootcamp.Maps.Map;
+
 public class RobotController {
 
 

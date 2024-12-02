@@ -1,11 +1,15 @@
 package com.btcag.bootcamp.Robots;
 
 import com.btcag.bootcamp.Buffs.Buffs;
+import com.btcag.bootcamp.Maps.Map;
 
 public class Robot {
     private int x;
     private int y;
-    private String avatar;
+    private char avatar;
+    private boolean dmgBuffActive;
+    private boolean rangeBuffActive;
+    private boolean movementBuffActive;
 
     private int MaxLifePoints = 1;
     private int MaxEnergy = 1;
@@ -24,7 +28,9 @@ public class Robot {
     public Buffs buffs;
 
 
-    public Robot() {
+    public Robot(int x, int y, Map map) {
+        this.x = x;
+        this.y = y;
         buffs = new Buffs();
         RobotView.chooseRobotAvatar(this, "Geben sie ein zugelassenes ASCII Zeichen an, mit dem der Roboter auf dem Spielfeld ausgegeben soll.");
         RobotController.getStats(this);
@@ -41,7 +47,7 @@ public class Robot {
         return y;
     }
 
-    public String getAvatar() {
+    public char getAvatar() {
         return avatar;
     }
 
@@ -97,7 +103,7 @@ public class Robot {
         this.y = y;
     }
 
-    public void setAvatar(String avatar) {
+    public void setAvatar(char avatar) {
         this.avatar = avatar;
     }
 
@@ -147,5 +153,33 @@ public class Robot {
 
     public int getSkillPoints() {
         return skillPoints;
+    }
+
+    public boolean isDmgBuffActive() {
+        return dmgBuffActive;
+    }
+
+    public boolean isRangeBuffActive() {
+        return rangeBuffActive;
+    }
+
+    public boolean isMovementBuffActive() {
+        return movementBuffActive;
+    }
+
+    public void setDmgBuffActive(boolean dmgBuffActive) {
+        this.dmgBuffActive = dmgBuffActive;
+    }
+
+    public void setRangeBuffActive(boolean rangeBuffActive) {
+        this.rangeBuffActive = rangeBuffActive;
+    }
+
+    public void setMovementBuffActive(boolean movementBuffActive) {
+        this.movementBuffActive = movementBuffActive;
+    }
+
+    public void setMovement(int movement) {
+        this.movement = movement;
     }
 }

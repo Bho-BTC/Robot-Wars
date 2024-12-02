@@ -15,7 +15,7 @@ public class RobotView {
             System.out.println(message);
             input = scanner.nextLine();
         } while (input.length() > 1);
-        robot.setAvatar(input);
+        robot.setAvatar(input.charAt(0));
         System.out.println();
     }
 
@@ -25,7 +25,7 @@ public class RobotView {
 
     public static int getSkillpointInput(Robot robot){
         Scanner scanner = new Scanner(System.in);
-        int in;
+        int input;
 
         System.out.println("Geben sie an welchen Stat sie erhöhen wollen. Sie haben noch " + robot.getSkillPoints() + " übrig.");
         System.out.println("(1) Leben: " + robot.getMaxLifePoints());
@@ -35,10 +35,9 @@ public class RobotView {
         System.out.println("(5) Reichweite: " + robot.getRange());
         System.out.println("(6) Fläche: " + robot.getAreaOfEffect());
         System.out.println("(7) Zielgenauigkeit: " + robot.getAccuracy());
-        in = scanner.nextInt();
+        input = scanner.nextInt();
 
-        scanner.close();
-        return in;
+        return input;
     }
 
     public static void printFinalStats(Robot robot){

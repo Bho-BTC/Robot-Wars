@@ -1,34 +1,34 @@
 package com.btcag.bootcamp.Maps;
 
-import com.btcag.bootcamp.PowerUps.PowerUps;
+import com.btcag.bootcamp.PowerUps.PowerUp;
 import com.btcag.bootcamp.Robots.Robot;
 
 public class MapView {
 
 
-    public static void drawMap(Map map, Robot robot1, Robot robot2, PowerUps powerUps) {
+    public static void drawMap(Map map, Robot robot1, Robot robot2, PowerUp[] powerUps) {
         int countY = 1;
         int countX = 1;
         String out;
-        while (countY <= map.getMaxY()) {
+        while (countY <= map.field.length) {
             System.out.println();
-            while (countX <= map.getMaxX()) {
-                if (countY == powerUps.getShieldPowerUp().getY() && countX == powerUps.getShieldPowerUp().getX()) {
-                    out = powerUps.getShieldPowerUp().getAvatar();
-                }else if (countY == powerUps.getRangePowerUp().getY() && countX == powerUps.getRangePowerUp().getX()) {
-                    out = powerUps.getRangePowerUp().getAvatar();
-                } else if (countY == powerUps.getDmgPowerUp().getY() && countX == powerUps.getDmgPowerUp().getX()) {
-                    out = powerUps.getDmgPowerUp().getAvatar();
+            while (countX <= map.field[1].length) {
+                if (countY == powerUps[0].getY() && countX == powerUps[0].getX() && powerUps[0].isOnField()) {
+                    out = "" + powerUps[0].getAvatar();
+                } else if (countY == powerUps[1].getY() && countX == powerUps[1].getX() && powerUps[1].isOnField()) {
+                    out = "" + powerUps[1].getAvatar();
+                } else if (countY == powerUps[2].getY() && countX == powerUps[2].getX() && powerUps[2].isOnField()) {
+                    out = "" + powerUps[2].getAvatar();
                 } else if (countY == robot1.getY() && countX == robot1.getX()) {
-                    out = " " + robot1.getAvatar() + " ";
+                    out = "" + robot1.getAvatar();
 
                 } else if (countY == robot2.getY() && countX == robot2.getX()) {
-                    out = " " + robot2.getAvatar() + " ";
+                    out = "" + robot2.getAvatar();
 
                 } else {
-                    out = "   ";
+                    out = " ";
                 }
-                System.out.print("[" + out + "] ");
+                System.out.print("[ " + out + " ] ");
                 countX++;
             }
             countY++;
