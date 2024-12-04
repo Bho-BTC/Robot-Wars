@@ -1,6 +1,5 @@
 package com.btcag.bootcamp.Robots;
 
-import com.btcag.bootcamp.Buffs.Buffs;
 import com.btcag.bootcamp.Maps.Map;
 
 public class Robot {
@@ -10,6 +9,20 @@ public class Robot {
     private boolean dmgBuffActive;
     private boolean rangeBuffActive;
     private boolean movementBuffActive;
+
+
+    private boolean hasAttackedThisRound = false;
+
+
+    private int dmgBuffDuration;
+    private int rangeBuffDuration;
+    private int movementBuffDuration;
+
+
+    private int gainedDmg;
+    private int gainedRange;
+    private int gainedMovement;
+
 
     private int MaxLifePoints = 1;
     private int MaxEnergy = 1;
@@ -24,8 +37,16 @@ public class Robot {
     private int accuracy = 1;
     private int skillPoints = 10;
     private int movement = 3;
+    private int movesLeft = movement;
 
 
+    public int getMovesLeft() {
+        return movesLeft;
+    }
+
+    public void setMovesLeft(int movesLeft) {
+        this.movesLeft = movesLeft;
+    }
 
     public Robot(int x, int y, Map map) {
         this.x = x;
@@ -179,5 +200,61 @@ public class Robot {
 
     public void setMovement(int movement) {
         this.movement = movement;
+    }
+
+    public int getGainedDmg() {
+        return gainedDmg;
+    }
+
+    public int getGainedRange() {
+        return gainedRange;
+    }
+
+    public int getGainedMovement() {
+        return gainedMovement;
+    }
+
+    public void setGainedDmg(int gainedDmg) {
+        this.gainedDmg = gainedDmg;
+    }
+
+    public void setGainedRange(int gainedRange) {
+        this.gainedRange = gainedRange;
+    }
+
+    public void setGainedMovement(int gainedMovement) {
+        this.gainedMovement = gainedMovement;
+    }
+
+    public void setDmgBuffDuration(int dmgBuffDuration) {
+        this.dmgBuffDuration = dmgBuffDuration;
+    }
+
+    public void setRangeBuffDuration(int rangeBuffDuration) {
+        this.rangeBuffDuration = rangeBuffDuration;
+    }
+
+    public void setMovementBuffDuration(int movementBuffDuration) {
+        this.movementBuffDuration = movementBuffDuration;
+    }
+
+    public int getDmgBuffDuration() {
+        return dmgBuffDuration;
+    }
+
+    public int getRangeBuffDuration() {
+        return rangeBuffDuration;
+    }
+
+    public int getMovementBuffDuration() {
+        return movementBuffDuration;
+    }
+
+    public boolean isHasAttackedThisRound() {
+        return hasAttackedThisRound;
+    }
+
+    public void setHasAttackedThisRound(boolean hasAttackedThisRound) {
+        this.hasAttackedThisRound = hasAttackedThisRound;
     }
 }

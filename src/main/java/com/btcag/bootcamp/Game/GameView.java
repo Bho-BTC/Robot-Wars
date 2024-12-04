@@ -48,7 +48,9 @@ public class GameView {
         do {
             System.out.println();
             System.out.println(playerName + ", in welche Richtung willst du gehen? (Q, W, E, A, D, Y, S, X) oder P um nichts zu tun.");
-            System.out.println("Q = hoch-links | W = hoch | E = hoch-rechts | A = links | D = rechts | Y = runter links | S = runter | X = runter-rechts");
+            System.out.println("    Q    W    E");
+            System.out.println("    A   You   D");
+            System.out.println("    Y    S    X");
             System.out.println("Du kannst nicht auf das selbe Feld gehen, auf dem dein Gegner steht und auch nicht aus dem Spielfeld gehen.");
             direction = scanner.nextLine();
         } while (!GameValidationController.validDirection(direction, turningRobot, notTurningRobot));

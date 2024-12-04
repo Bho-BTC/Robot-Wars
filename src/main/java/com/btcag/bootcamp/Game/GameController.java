@@ -8,8 +8,22 @@ import com.btcag.bootcamp.Robots.Robot;
 import com.btcag.bootcamp.Robots.RobotController;
 import com.btcag.bootcamp.Robots.RobotView;
 import com.btcag.bootcamp.User.User;
+import com.btcag.bootcamp.Robots.alignment;
 
 public class GameController {
+
+
+    public static void moveRobot(Robot robot, String key) {
+        for( alignment direction: alignment.values()) {
+            if(key.equals(direction.key)) {
+                robot.setY(robot.getY() + direction.y);
+                robot.setX(robot.getX() + direction.x);
+            }
+        }
+
+    }
+
+
 
 
     public static void turn(Robot turningRobot, Robot notTurningRobot, String playerName, Map map, PowerUp[] powerUps) {
@@ -18,39 +32,47 @@ public class GameController {
         String direction = GameView.getDirectionInput(turningRobot, notTurningRobot, playerName);
         switch (direction) {
             case "Q":
-                turningRobot.setY(turningRobot.getY() - 1);
-                turningRobot.setX(turningRobot.getX() - 1);
+                moveRobot(turningRobot, direction);
+//                turningRobot.setY(turningRobot.getY() + (alignment.NORTH_WEST.y));
+//                turningRobot.setX(turningRobot.getX() + (alignment.NORTH_WEST.x));
                 break;
 
             case "W":
-                turningRobot.setY(turningRobot.getY() - 1);
+                moveRobot(turningRobot, "W");
+                // turningRobot.setY(turningRobot.getY() - 1);
                 break;
 
             case "E":
-                turningRobot.setY(turningRobot.getY() - 1);
-                turningRobot.setX(turningRobot.getX() + 1);
+                moveRobot(turningRobot, "E");
+//                turningRobot.setY(turningRobot.getY() - 1);
+//                turningRobot.setX(turningRobot.getX() + 1);
                 break;
 
             case "A":
-                turningRobot.setX(turningRobot.getX() - 1);
+                moveRobot(turningRobot, "A");
+//                turningRobot.setX(turningRobot.getX() - 1);
                 break;
 
             case "D":
-                turningRobot.setX(turningRobot.getX() + 1);
+                moveRobot(turningRobot, "D");
+//                turningRobot.setX(turningRobot.getX() + 1);
                 break;
 
             case "Y":
-                turningRobot.setY(turningRobot.getY() + 1);
-                turningRobot.setX(turningRobot.getX() - 1);
+                moveRobot(turningRobot, "Y");
+//                turningRobot.setY(turningRobot.getY() + 1);
+//                turningRobot.setX(turningRobot.getX() - 1);
                 break;
 
             case "S":
-                turningRobot.setY(turningRobot.getY() + 1);
+                moveRobot(turningRobot, "S");
+//                turningRobot.setY(turningRobot.getY() + 1);
                 break;
 
             case "X":
-                turningRobot.setY(turningRobot.getY() + 1);
-                turningRobot.setX(turningRobot.getX() + 1);
+                moveRobot(turningRobot, "X");
+//                turningRobot.setY(turningRobot.getY() + 1);
+//                turningRobot.setX(turningRobot.getX() + 1);
                 break;
 
             case "P":

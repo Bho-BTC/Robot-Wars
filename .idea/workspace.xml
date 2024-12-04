@@ -5,14 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95554a93-a51d-488a-bdd2-397d59e45264" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/RobotPowerUp/RobotPowerUpController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Robots/alignment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/Buffs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/Buffs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/Buffs.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/DmgBuff.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/RangeBuff.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Buffs/ShieldBuff.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Game/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Game/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Game/GameValidationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Game/GameValidationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Game/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Game/GameView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Game/RobotWarsGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Game/RobotWarsGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/PowerUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/PowerUps/PowerUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/RobotPowerUp/RobotPowerUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/RobotPowerUp/RobotPowerUpController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Robots/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Robots/Robot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Robots/RobotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Robots/RobotController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Robots/RobotView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Robots/RobotView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +30,7 @@
       <list>
         <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -97,7 +104,9 @@
       <workItem from="1732775187492" duration="1981000" />
       <workItem from="1732802070563" duration="2098000" />
       <workItem from="1732861658778" duration="17459000" />
-      <workItem from="1733121961411" duration="14834000" />
+      <workItem from="1733121961411" duration="15526000" />
+      <workItem from="1733294817495" duration="596000" />
+      <workItem from="1733301629608" duration="11813000" />
     </task>
     <servers />
   </component>

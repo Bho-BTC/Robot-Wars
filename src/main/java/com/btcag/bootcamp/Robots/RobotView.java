@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class RobotView {
 
 
-
     //-----------------------------------------Holt sich ein Zeichen langen Input vom Nutzer, benötigt Nachricht zum Auffordern------------------------------------------
     public static void chooseRobotAvatar(Robot robot, String message) {
         //-----------------------------------------------Robot Auswahl-------------------------------------------------,
@@ -19,11 +18,11 @@ public class RobotView {
         System.out.println();
     }
 
-    public static void printHitMessage(Robot targetRobot){
+    public static void printHitMessage(Robot targetRobot) {
         System.out.println("Du hast den Roboter " + targetRobot.getAvatar() + " getroffen. ");
     }
 
-    public static int getSkillpointInput(Robot robot){
+    public static int getSkillpointInput(Robot robot) {
         Scanner scanner = new Scanner(System.in);
         int input;
 
@@ -40,7 +39,7 @@ public class RobotView {
         return input;
     }
 
-    public static void printFinalStats(Robot robot){
+    public static void printFinalStats(Robot robot) {
         System.out.println("Leben: " + robot.getMaxLifePoints());
         System.out.println("Energie: " + robot.getMaxLifePoints());
         System.out.println("Schild: " + robot.getMaxShield());
@@ -56,23 +55,25 @@ public class RobotView {
         System.out.println("Stats von " + robot.getAvatar());
         System.out.println("HP: " + robot.getCurrentHp() + "/" + robot.getMaxLifePoints());
         System.out.println("Energy: " + robot.getCurrentEnergy() + "/" + robot.getMaxEnergy());
-        System.out.println("Shield: " + robot.getCurrentShield()+ "/" + robot.getMaxShield());
+        System.out.println("Shield: " + robot.getCurrentShield() + "/" + robot.getMaxShield());
         System.out.println("Damage: " + robot.getDmg());
         System.out.println("Range: " + robot.getRange());
         System.out.println("AreaOfEffect: " + robot.getAreaOfEffect());
         System.out.println("Accuracy: " + robot.getAccuracy());
+        System.out.println("Moves: " + robot.getMovesLeft() + "/" + robot.getMovement());
+
         System.out.println();
-        if (robot.buffs.dmgBuff.getIsActive()) {
-            System.out.println("Dmg Buff is active");
+        if (robot.isDmgBuffActive()) {
+            System.out.println("Dmg Buff is active for " + robot.getDmgBuffDuration() + " Turns");
         }
-        if (robot.buffs.rangeBuff.getIsActive()) {
-            System.out.println("Range Buff is active");
+        if (robot.isRangeBuffActive()) {
+            System.out.println("Range Buff is active for " + robot.getRangeBuffDuration() + " Turns");
+        }
+        if (robot.isMovementBuffActive()) {
+            System.out.println("MovementBuff is active for " + robot.getMovementBuffDuration() + " Turns");
         }
         System.out.println();
     }
-
-
-
 
 
 }

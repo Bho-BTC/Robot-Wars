@@ -1,6 +1,7 @@
 package com.btcag.bootcamp.Robots;
 
 import com.btcag.bootcamp.Maps.Map;
+import com.btcag.bootcamp.RobotPowerUp.RobotPowerUpController;
 
 public class RobotController {
 
@@ -11,15 +12,10 @@ public class RobotController {
         if (targetRobot.getCurrentShield() < tempDmg) {
             tempDmg -= targetRobot.getCurrentShield();
             targetRobot.setCurrentShield(0);
-            targetRobot.setCurrentHp(targetRobot.getCurrentHp()-tempDmg);
+            targetRobot.setCurrentHp(targetRobot.getCurrentHp() - tempDmg);
         } else {
-            targetRobot.setCurrentShield(targetRobot.getCurrentShield()-tempDmg);
+            targetRobot.setCurrentShield(targetRobot.getCurrentShield() - tempDmg);
         }
-        if (robot.isDmgBuffActive()) {
-            robot.setDmgBuffActive(false);
-            robot.setDmg( robot.getDmg()-robot.buffs.dmgBuff.getBuffValue());
-        }
-
 
         RobotView.printHitMessage(targetRobot);
     }
@@ -33,35 +29,36 @@ public class RobotController {
             } while (in != 1 && in != 2 && in != 3 && in != 4 && in != 5 && in != 6 && in != 7);
             switch (in) {
                 case 1:
-                    robot.setMaxLifePoints(robot.getMaxLifePoints()+1);
+                    robot.setMaxLifePoints(robot.getMaxLifePoints() + 1);
                     break;
 
                 case 2:
-                    robot.setMaxEnergy(robot.getMaxEnergy()+1);
+                    robot.setMaxEnergy(robot.getMaxEnergy() + 1);
                     break;
 
                 case 3:
-                    robot.setMaxShield(robot.getMaxShield()+1);
+                    robot.setMaxShield(robot.getMaxShield() + 1);
                     break;
 
                 case 4:
-                    robot.setDmg(robot.getDmg()+1);
+                    robot.setDmg(robot.getDmg() + 1);
                     break;
 
                 case 5:
-                    robot.setRange(robot.getRange()+1);
+                    robot.setRange(robot.getRange() + 1);
                     break;
 
                 case 6:
-                    robot.setAreaOfEffect(robot.getAreaOfEffect()+1);
+                    robot.setAreaOfEffect(robot.getAreaOfEffect() + 1);
                     break;
 
                 case 7:
-                    robot.setAccuracy(robot.getAccuracy()+1);
+                    robot.setAccuracy(robot.getAccuracy() + 1);
                     break;
             }
-            robot.setSkillPoints(robot.getSkillPoints()-1);
+            robot.setSkillPoints(robot.getSkillPoints() - 1);
         }
+        RobotView.printFinalStats(robot);
 
     }
 

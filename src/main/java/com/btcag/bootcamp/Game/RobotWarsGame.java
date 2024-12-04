@@ -1,16 +1,21 @@
 package com.btcag.bootcamp.Game;
+
 import com.btcag.bootcamp.Maps.Map;
 import com.btcag.bootcamp.Maps.MapView;
 import com.btcag.bootcamp.PowerUps.PowerUp;
+import com.btcag.bootcamp.PowerUps.PowerUpController;
+import com.btcag.bootcamp.RobotPowerUp.RobotPowerUpController;
 import com.btcag.bootcamp.Robots.Robot;
+import com.btcag.bootcamp.Robots.RobotController;
 import com.btcag.bootcamp.User.User;
+
 public class RobotWarsGame {
     public static void main(String[] args) {
         //Map erstellen
         Map map = new Map(15, 15);
         //2 Nutzer mit jeweils einem Roboter erstellen
         User user1 = new User("Spieler 1");
-        Robot player1 = new Robot(1,7, map);
+        Robot player1 = new Robot(1, 7, map);
         User user2 = new User("Spieler 2");
         Robot player2 = new Robot(15, 7, map);
         Robot[] robots = new Robot[]{player1, player2};
@@ -19,7 +24,7 @@ public class RobotWarsGame {
         int lastTurn = 1;
 
         //Powerups starten
-        PowerUp[] powerUps = {new PowerUp(7,7, map), new PowerUp(6,6, map), new PowerUp(8,8, map)};
+        PowerUp[] powerUps = {new PowerUp(7, 7, map), new PowerUp(6, 6, map), new PowerUp(8, 8, map)};
         //Intro abspielen
         GameView.intro(user1.getName(), user2.getName());
 
@@ -28,29 +33,37 @@ public class RobotWarsGame {
             MapView.drawMap(map, player1, player2, powerUps);
             //Spieler 1
             if (lastTurn == 1) {
-                for (int i = player1.getMovement(); i > 0; i--) {
+                while (player1.getMovesLeft() > 0) {
                     GameController.turn(player1, player2, user1.getName(), map, powerUps);
-                    if(GameController.afterTurnRangeCheck(player1, player2, user1.getName())) {
-                        i=0;
+                    if (GameController.afterTurnRangeCheck(player1, player2, user1.getName()) && !(player1.isHasAttackedThisRound())) {
+                        player1.setHasAttackedThisRound(true);
                     }
+                    player1.setMovesLeft(player1.getMovesLeft() - 1);
                 }
-
+                RobotPowerUpController.updateBuffs(player1);
+                player1.setMovesLeft(player1.getMovement());
                 lastTurn = 2;
             } else if (lastTurn == 2) {
                 //Spieler 2
-                for (int i = player2.getMovement(); i > 0; i--) {
+                while (player2.getMovesLeft() > 0) {
                     GameController.turn(player2, player1, user2.getName(), map, powerUps);
-                    if(GameController.afterTurnRangeCheck(player2, player1, user2.getName())){
-                        i=0;
+                    if (GameController.afterTurnRangeCheck(player2, player1, user2.getName()) && !(player2.isHasAttackedThisRound())) {
+                        player2.setHasAttackedThisRound(true);
                     }
+                    player2.setMovesLeft(player2.getMovesLeft() - 1);
                 }
+                RobotPowerUpController.updateBuffs(player2);
+                player2.setMovesLeft(player2.getMovement());
 
                 lastTurn = 1;
+            }
+            for (PowerUp powerUp : powerUps) {
+                PowerUpController.update(powerUp);
             }
         }
         //Nachdem einer gewonnen hat
         System.out.println();
         String winner = GameController.getWinner(player1, player2, user1, user2);
-       GameView.printWinMessage(winner);
+        GameView.printWinMessage(winner);
     }
 }
