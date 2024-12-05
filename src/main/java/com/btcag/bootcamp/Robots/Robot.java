@@ -10,19 +10,16 @@ public class Robot {
     private boolean rangeBuffActive;
     private boolean movementBuffActive;
 
-
+    private alignment alignment;
     private boolean hasAttackedThisRound = false;
-
 
     private int dmgBuffDuration;
     private int rangeBuffDuration;
     private int movementBuffDuration;
 
-
     private int gainedDmg;
     private int gainedRange;
     private int gainedMovement;
-
 
     private int MaxLifePoints = 1;
     private int MaxEnergy = 1;
@@ -49,6 +46,7 @@ public class Robot {
     }
 
     public Robot(int x, int y, Map map) {
+        this.alignment = com.btcag.bootcamp.Robots.alignment.NORTH;
         this.x = x;
         this.y = y;
         RobotView.chooseRobotAvatar(this, "Geben sie ein zugelassenes ASCII Zeichen an, mit dem der Roboter auf dem Spielfeld ausgegeben soll.");
@@ -56,6 +54,7 @@ public class Robot {
         this.currentHp = MaxLifePoints;
         this.currentEnergy = MaxEnergy;
         this.currentShield = MaxShield;
+        this.movesLeft = movement;
     }
 
     public int getX() {
@@ -256,5 +255,13 @@ public class Robot {
 
     public void setHasAttackedThisRound(boolean hasAttackedThisRound) {
         this.hasAttackedThisRound = hasAttackedThisRound;
+    }
+
+    public com.btcag.bootcamp.Robots.alignment getAlignment() {
+        return alignment;
+    }
+
+    public void setAlignment(com.btcag.bootcamp.Robots.alignment alignment) {
+        this.alignment = alignment;
     }
 }

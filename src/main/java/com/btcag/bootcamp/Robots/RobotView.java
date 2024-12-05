@@ -34,6 +34,7 @@ public class RobotView {
         System.out.println("(5) Reichweite: " + robot.getRange());
         System.out.println("(6) Fläche: " + robot.getAreaOfEffect());
         System.out.println("(7) Zielgenauigkeit: " + robot.getAccuracy());
+        System.out.println("(8) Movement: " + robot.getMovement());
         input = scanner.nextInt();
 
         return input;
@@ -47,6 +48,7 @@ public class RobotView {
         System.out.println("Reichweite: " + robot.getRange());
         System.out.println("Fläche: " + robot.getAreaOfEffect());
         System.out.println("Zielgenauigkeit: " + robot.getAccuracy());
+        System.out.println("Movement: " + robot.getMovement());
         System.out.println();
     }
 
@@ -61,6 +63,7 @@ public class RobotView {
         System.out.println("AreaOfEffect: " + robot.getAreaOfEffect());
         System.out.println("Accuracy: " + robot.getAccuracy());
         System.out.println("Moves: " + robot.getMovesLeft() + "/" + robot.getMovement());
+        System.out.println("Ausrichtung: " + robot.getAlignment().toString());
 
         System.out.println();
         if (robot.isDmgBuffActive()) {

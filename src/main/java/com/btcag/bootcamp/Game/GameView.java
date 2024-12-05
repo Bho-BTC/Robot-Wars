@@ -6,6 +6,25 @@ import java.util.Scanner;
 
 public class GameView {
 
+
+    public static String getActionType(Robot robot, String playerName) {
+        Scanner scanner = new Scanner(System.in);
+        String input;
+
+        do {
+            System.out.println("Was wollen sie tun, " + playerName + "?");
+            System.out.println("(1) Bewegen");
+            System.out.println("(2) Angreifen");
+            System.out.println("(3) Manuell Drehen");
+
+            input = scanner.next();
+        } while (!input.equals("1") && !input.equals("2") && !input.equals("3"));
+
+
+        return input;
+    }
+
+
     public static void intro(String username, String username2) {
         //------------------------------------------Intro---------------------------------------------------
         System.out.println("Willkommen bei Robot Wars");
@@ -34,15 +53,15 @@ public class GameView {
             temp = sc.nextLine();
         } while (!(temp.equalsIgnoreCase("y")) && !(temp.equalsIgnoreCase("n")));
 
-        if(temp.equalsIgnoreCase("y")) {
+        if (temp.equalsIgnoreCase("y")) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
 
-    public static String getDirectionInput(Robot turningRobot, Robot notTurningRobot, String playerName) {
+    public static String getMoveDirection(Robot turningRobot, Robot notTurningRobot, String playerName) {
         Scanner scanner = new Scanner(System.in);
         String direction;
         do {
@@ -51,9 +70,27 @@ public class GameView {
             System.out.println("    Q    W    E");
             System.out.println("    A   You   D");
             System.out.println("    Y    S    X");
-            System.out.println("Du kannst nicht auf das selbe Feld gehen, auf dem dein Gegner steht und auch nicht aus dem Spielfeld gehen.");
+            System.out.println("Du kannst nicht auf das selbe Feld laufen, auf dem dein Gegner steht und auch nicht aus dem Spielfeld gehen.");
             direction = scanner.nextLine();
         } while (!GameValidationController.validDirection(direction, turningRobot, notTurningRobot));
+
+        return direction;
+    }
+
+
+    public static String getAlignDirection(Robot turningRobot, String playerName) {
+        Scanner scanner = new Scanner(System.in);
+        String direction;
+        do {
+            System.out.println();
+            System.out.println(playerName + ", in welche Richtung willst du dich drehen? (Q, W, E, A, D, Y, S, X) oder P um nichts zu tun.");
+            System.out.println("    Q    W    E");
+            System.out.println("    A   You   D");
+            System.out.println("    Y    S    X");
+            direction = scanner.nextLine();
+        } while (   !direction.equalsIgnoreCase("q") && !direction.equalsIgnoreCase("w") && !direction.equalsIgnoreCase("e")
+                &&  !direction.equalsIgnoreCase("a") && !direction.equalsIgnoreCase("s") && !direction.equalsIgnoreCase("d")
+                &&  !direction.equalsIgnoreCase("y") && !direction.equalsIgnoreCase("x") && !direction.equalsIgnoreCase("p"));
 
         return direction;
     }

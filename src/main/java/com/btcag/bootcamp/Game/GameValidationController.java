@@ -2,6 +2,9 @@ package com.btcag.bootcamp.Game;
 
 import com.btcag.bootcamp.PowerUps.PowerUpController;
 import com.btcag.bootcamp.Robots.Robot;
+import com.btcag.bootcamp.Robots.alignment;
+
+import javax.swing.*;
 
 public class GameValidationController {
 
@@ -77,10 +80,6 @@ public class GameValidationController {
     }
 
 
-
-
-
-
     public static boolean inRange(Robot robot1, Robot robot2) {
         //check ob robot2 x in range von robot1 x ist
         //Rechts und Oben
@@ -96,6 +95,19 @@ public class GameValidationController {
         } else {
             return false;
         }
+    }
+
+    public static boolean aligned(Robot robot1, Robot robot2) {
+        int tempX = robot1.getX();
+        int tempY = robot1.getY();
+        for (int i = 1; i <= robot1.getRange(); i++) {
+            tempX += robot1.getAlignment().x;
+            tempY += robot1.getAlignment().y;
+            if (tempX == robot2.getX() && tempY == robot2.getY()) {
+                return true;
+            }
+        }
+        return false;
     }
 
 

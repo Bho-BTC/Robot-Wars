@@ -4,6 +4,16 @@ import com.btcag.bootcamp.Maps.Map;
 import com.btcag.bootcamp.RobotPowerUp.RobotPowerUpController;
 
 public class RobotController {
+    public static void moveRobot(Robot robot, String key) {
+        for( alignment direction: alignment.values()) {
+            if(key.equals(direction.key)) {
+                robot.setAlignment(direction);
+                robot.setY(robot.getY() + direction.y);
+                robot.setX(robot.getX() + direction.x);
+            }
+        }
+    }
+
 
 
     public static void hit(Robot robot, Robot targetRobot) {
@@ -26,7 +36,7 @@ public class RobotController {
         while (robot.getSkillPoints() > 0) {
             do {
                 in = RobotView.getSkillpointInput(robot);
-            } while (in != 1 && in != 2 && in != 3 && in != 4 && in != 5 && in != 6 && in != 7);
+            } while (in != 1 && in != 2 && in != 3 && in != 4 && in != 5 && in != 6 && in != 7 && in != 8);
             switch (in) {
                 case 1:
                     robot.setMaxLifePoints(robot.getMaxLifePoints() + 1);
@@ -54,6 +64,10 @@ public class RobotController {
 
                 case 7:
                     robot.setAccuracy(robot.getAccuracy() + 1);
+                    break;
+
+                case 8:
+                    robot.setMovement(robot.getMovement() + 1);
                     break;
             }
             robot.setSkillPoints(robot.getSkillPoints() - 1);
