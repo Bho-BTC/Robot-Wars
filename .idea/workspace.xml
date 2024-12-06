@@ -5,14 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95554a93-a51d-488a-bdd2-397d59e45264" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Obstacles/Walls.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Enitites/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Enitites/Item.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Enitites/Map.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Enitites/MapItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Enitites/Move.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Enitites/Robot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Enitites/RobotManipulator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Enums/Align.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Enums/ItemType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Enums/MapItemType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Enums/MoveType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Maps/MapValidation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Game/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Game/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Game/GameValidationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Game/GameValidationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Game/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Game/GameView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Game/RobotWarsGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Game/RobotWarsGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Maps/MapView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Maps/MapView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Obstacles/Wall.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/RobotPowerUp/RobotPowerUpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/RobotPowerUp/RobotPowerUpController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Robots/RobotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/btcag/bootcamp/Robots/RobotController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +37,8 @@
       <list>
         <option value="JUnit5 Test Class" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -46,27 +59,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.RobotWarsGame.executor": "Run",
-    "Application.test.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "C:/Users/Bho/IdeaProjects/RobotWars/src/test/java",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/BHGROOTH/IdeaProjects/RobotWars/src/main/java/org/example/Main.java",
-    "settings.editor.selected.configurable": "terminal",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.RobotWarsGame.executor&quot;: &quot;Run&quot;,
+    &quot;Application.test.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/Bho/IdeaProjects/RobotWars/src/test/java&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/BHGROOTH/IdeaProjects/RobotWars/src/main/java/org/example/Main.java&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -104,7 +117,8 @@
       <workItem from="1733294817495" duration="596000" />
       <workItem from="1733301629608" duration="13453000" />
       <workItem from="1733381479760" duration="19768000" />
-      <workItem from="1733466458883" duration="4573000" />
+      <workItem from="1733466458883" duration="6200000" />
+      <workItem from="1733472976945" duration="3909000" />
     </task>
     <servers />
   </component>

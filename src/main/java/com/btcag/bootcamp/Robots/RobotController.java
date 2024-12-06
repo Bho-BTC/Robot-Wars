@@ -1,6 +1,8 @@
 package com.btcag.bootcamp.Robots;
 
+import com.btcag.bootcamp.Game.GameValidationController;
 import com.btcag.bootcamp.Maps.Map;
+import com.btcag.bootcamp.PowerUps.PowerUp;
 import com.btcag.bootcamp.RobotPowerUp.RobotPowerUpController;
 
 public class RobotController {
@@ -14,6 +16,31 @@ public class RobotController {
         }
     }
 
+    public static void move(Robot turningRobot, Robot notTurningRobot, String playerName, Map map, PowerUp[] powerUps, String direction) {
+        switch (direction) {
+            case "P":
+                break;
+
+            default:
+                RobotController.moveRobot(turningRobot, direction);
+        }
+    }
+
+    public static void align(Robot turningRobot, String direction) {
+        for (alignment alignment : alignment.values()) {
+            if (direction.equals(alignment.key)) {
+                turningRobot.setAlignment(alignment);
+            }
+        }
+    }
+
+    public static void attack(Robot turningRobot, Robot notTurningRobot) {
+        turningRobot.setHasAttackedThisRound(true);
+        if (GameValidationController.aligned(turningRobot, notTurningRobot)) {
+            RobotController.hit(turningRobot, notTurningRobot);
+            System.out.println();
+        }
+    }
 
 
     public static void hit(Robot robot, Robot targetRobot) {

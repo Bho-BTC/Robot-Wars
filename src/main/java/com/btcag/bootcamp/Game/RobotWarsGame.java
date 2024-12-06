@@ -15,7 +15,6 @@ public class RobotWarsGame {
         //
         char wallChar = 219;
 
-
         //2 Nutzer mit jeweils einem Roboter erstellen
         User user1 = new User("Spieler 1");
         Robot player1 = new Robot(1, 7, map);

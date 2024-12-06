@@ -112,6 +112,4 @@ public class RobotPowerUpController {
             powerUp.setOnField(false);
         }
     }
-
-
 }

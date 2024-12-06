@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class GameView {
 
 
-    public static String getActionType(Robot robot, String playerName) {
+    public static String getActionType(String playerName) {
         Scanner scanner = new Scanner(System.in);
         String input;
 
@@ -78,7 +78,7 @@ public class GameView {
     }
 
 
-    public static String getAlignDirection(Robot turningRobot, String playerName) {
+    public static String getAlignDirection(String playerName) {
         Scanner scanner = new Scanner(System.in);
         String direction;
         do {
@@ -88,9 +88,9 @@ public class GameView {
             System.out.println("    A   You   D");
             System.out.println("    Y    S    X");
             direction = scanner.nextLine();
-        } while (   !direction.equalsIgnoreCase("q") && !direction.equalsIgnoreCase("w") && !direction.equalsIgnoreCase("e")
-                &&  !direction.equalsIgnoreCase("a") && !direction.equalsIgnoreCase("s") && !direction.equalsIgnoreCase("d")
-                &&  !direction.equalsIgnoreCase("y") && !direction.equalsIgnoreCase("x") && !direction.equalsIgnoreCase("p"));
+        } while (   !direction.equalsIgnoreCase("Q") && !direction.equalsIgnoreCase("W") && !direction.equalsIgnoreCase("E")
+                &&  !direction.equalsIgnoreCase("A") && !direction.equalsIgnoreCase("S") && !direction.equalsIgnoreCase("D")
+                &&  !direction.equalsIgnoreCase("Y") && !direction.equalsIgnoreCase("X") && !direction.equalsIgnoreCase("P"));
 
         return direction;
     }

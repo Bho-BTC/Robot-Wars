@@ -2,14 +2,12 @@ package com.btcag.bootcamp.Game;
 
 import com.btcag.bootcamp.Maps.Map;
 import com.btcag.bootcamp.Maps.MapView;
-import com.btcag.bootcamp.Obstacles.Walls;
 import com.btcag.bootcamp.PowerUps.PowerUp;
 import com.btcag.bootcamp.PowerUps.PowerUpController;
 import com.btcag.bootcamp.RobotPowerUp.RobotPowerUpController;
 import com.btcag.bootcamp.Robots.Robot;
 import com.btcag.bootcamp.Robots.RobotController;
 import com.btcag.bootcamp.Robots.RobotView;
-import com.btcag.bootcamp.Robots.alignment;
 import com.btcag.bootcamp.User.User;
 
 public class GameController {
@@ -25,16 +23,14 @@ public class GameController {
         mainRobot.setHasAttackedThisRound(false);
     }
 
-
-
     public static void takeAction(Robot turningRobot, Robot notTurningRobot, String playerName, Map map, PowerUp[] powerUps) {
         RobotView.printStats(turningRobot);
-        String actionType = GameView.getActionType(turningRobot, playerName);
+        String actionType = GameView.getActionType(playerName);
 
         switch (actionType) {
             //Bewegen
             case "1":
-                move(turningRobot, notTurningRobot, playerName, map, powerUps, GameView.getMoveDirection(turningRobot, notTurningRobot, playerName));
+                RobotController.move(turningRobot, notTurningRobot, playerName, map, powerUps, GameView.getMoveDirection(turningRobot, notTurningRobot, playerName));
                 break;
 
             //Angreifen
@@ -42,49 +38,17 @@ public class GameController {
                 if (turningRobot.isHasAttackedThisRound()) {
                     takeAction(turningRobot, notTurningRobot, playerName, map, powerUps);
                 } else {
-                    attack(turningRobot, notTurningRobot);
+                    RobotController.attack(turningRobot, notTurningRobot);
                 }
                 break;
             //Manuell Ausrichten
             case "3":
-                align(turningRobot, GameView.getAlignDirection(turningRobot, GameView.getAlignDirection(turningRobot, playerName)));
+                RobotController.align(turningRobot, GameView.getAlignDirection(playerName));
                 break;
         }
         checkPowerUp(turningRobot, powerUps);
         MapView.drawMap(map, turningRobot, notTurningRobot, powerUps);
     }
-
-
-    public static void align(Robot turningRobot, String direction) {
-        for (alignment alignment : alignment.values()) {
-            if (direction.equals(alignment.key)) {
-                turningRobot.setAlignment(alignment);
-            }
-        }
-    }
-
-
-    public static void attack(Robot turningRobot, Robot notTurningRobot) {
-        turningRobot.setHasAttackedThisRound(true);
-        if (GameValidationController.aligned(turningRobot, notTurningRobot)) {
-            RobotController.hit(turningRobot, notTurningRobot);
-            System.out.println();
-        }
-    }
-
-
-    public static void move(Robot turningRobot, Robot notTurningRobot, String playerName, Map map, PowerUp[] powerUps, String direction) {
-
-        switch (direction) {
-            case "P":
-                break;
-
-            default:
-                RobotController.moveRobot(turningRobot, direction);
-        }
-
-    }
-
 
     public static void checkPowerUp(Robot robot, PowerUp[] powerUps) {
         for (PowerUp powerUp : powerUps) {
@@ -93,7 +57,6 @@ public class GameController {
             }
         }
     }
-
 
     public static String getWinner(Robot robot1, Robot robot2, User user1, User user2) {
         if (robot1.getCurrentHp() < 1 && robot1.getCurrentHp() < robot2.getCurrentHp()) {
@@ -104,6 +67,4 @@ public class GameController {
             return "unentschieden";
         }
     }
-
-
 }
