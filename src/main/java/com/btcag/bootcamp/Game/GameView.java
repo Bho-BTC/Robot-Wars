@@ -96,6 +96,15 @@ public class GameView {
     }
 
 
+
+    public static void printMissHitMessage() {
+        System.out.println("Du hast nichts getroffen");
+    }
+
+    public static void printWallHitMessage() {
+       System.out.println("Du hast eine wand getroffen");
+    }
+
     public static void printWinMessage(String winner) {
         if (winner.equals("unentschieden")) {
             System.out.println("Es gibt keinen Gewinner, es ist ein Unentschieden");

@@ -2,8 +2,6 @@ package com.btcag.bootcamp.Game;
 
 import com.btcag.bootcamp.Maps.Map;
 import com.btcag.bootcamp.Maps.MapView;
-import com.btcag.bootcamp.Obstacles.Obstacles;
-import com.btcag.bootcamp.Obstacles.Wall;
 import com.btcag.bootcamp.PowerUps.PowerUp;
 import com.btcag.bootcamp.PowerUps.PowerUpController;
 import com.btcag.bootcamp.RobotPowerUp.RobotPowerUpController;
@@ -16,12 +14,7 @@ public class RobotWarsGame {
         Map map = new Map(15, 15);
         //
         char wallChar = 219;
-        Obstacles[] obstacles = {
-                new Wall(5, 1, wallChar, true),
-                new Wall(5, 2, wallChar, true),
-                new Wall(5, 3, wallChar, true),
-                new Wall(5, 4, wallChar, true)
-        };
+
 
         //2 Nutzer mit jeweils einem Roboter erstellen
         User user1 = new User("Spieler 1");
@@ -31,7 +24,7 @@ public class RobotWarsGame {
         Robot[] robots = new Robot[]{player1, player2};
         System.out.println("Nach Robotern");
         //Zählervariable für Züge erstellen und Roboter Startpositionen festlegen
-        int lastTurn = 1;
+        int nextTurn = 1;
 
         //Powerups starten
         PowerUp[] powerUps = {new PowerUp(7, 7, map), new PowerUp(6, 6, map), new PowerUp(8, 8, map)};
@@ -40,30 +33,15 @@ public class RobotWarsGame {
 
         //Während niemand das Spiel gewonnen hat
         while (!GameValidationController.checkWin(player1, player2)) {
-            MapView.drawMap(map, player1, player2, powerUps, obstacles);
+            MapView.drawMap(map, player1, player2, powerUps);
             //Spieler 1
-            if (lastTurn == 1) {
-                while (player1.getMovesLeft() > 0) {
-                    GameController.takeAction(player1, player2, user1.getName(), map, powerUps, obstacles);
-
-                    player1.setMovesLeft(player1.getMovesLeft() - 1);
-                }
-                RobotPowerUpController.updateBuffs(player1);
-                player1.setMovesLeft(player1.getMovement());
-                player1.setHasAttackedThisRound(false);
-                lastTurn = 2;
-            } else if (lastTurn == 2) {
+            if (nextTurn == 1) {
+                GameController.takeTurn(map, user1, player1, player2, powerUps);
+                nextTurn = 2;
+            } else if (nextTurn == 2) {
                 //Spieler 2
-                while (player2.getMovesLeft() > 0) {
-                    GameController.takeAction(player2, player1, user2.getName(), map, powerUps, obstacles);
-
-                    player2.setMovesLeft(player2.getMovesLeft() - 1);
-                }
-                RobotPowerUpController.updateBuffs(player2);
-                player2.setMovesLeft(player2.getMovement());
-                player2.setHasAttackedThisRound(false);
-
-                lastTurn = 1;
+                GameController.takeTurn(map, user2, player2, player1, powerUps);
+                nextTurn = 1;
             }
             for (PowerUp powerUp : powerUps) {
                 PowerUpController.update(powerUp);
@@ -74,4 +52,6 @@ public class RobotWarsGame {
         String winner = GameController.getWinner(player1, player2, user1, user2);
         GameView.printWinMessage(winner);
     }
+
+
 }

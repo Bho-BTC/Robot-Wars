@@ -2,9 +2,10 @@ package com.btcag.bootcamp.Game;
 
 import com.btcag.bootcamp.Maps.Map;
 import com.btcag.bootcamp.Maps.MapView;
-import com.btcag.bootcamp.Obstacles.Obstacles;
+import com.btcag.bootcamp.Obstacles.Walls;
 import com.btcag.bootcamp.PowerUps.PowerUp;
 import com.btcag.bootcamp.PowerUps.PowerUpController;
+import com.btcag.bootcamp.RobotPowerUp.RobotPowerUpController;
 import com.btcag.bootcamp.Robots.Robot;
 import com.btcag.bootcamp.Robots.RobotController;
 import com.btcag.bootcamp.Robots.RobotView;
@@ -13,8 +14,20 @@ import com.btcag.bootcamp.User.User;
 
 public class GameController {
 
+    public static void takeTurn(Map map, User mainUser, Robot mainRobot, Robot enemyRobot, PowerUp[] powerUps) {
+        while (mainRobot.getMovesLeft() > 0) {
+            GameController.takeAction(mainRobot, enemyRobot, mainUser.getName(), map, powerUps);
 
-    public static void takeAction(Robot turningRobot, Robot notTurningRobot, String playerName, Map map, PowerUp[] powerUps, Obstacles[] obstacles) {
+            mainRobot.setMovesLeft(mainRobot.getMovesLeft() - 1);
+        }
+        RobotPowerUpController.updateBuffs(mainRobot);
+        mainRobot.setMovesLeft(mainRobot.getMovement());
+        mainRobot.setHasAttackedThisRound(false);
+    }
+
+
+
+    public static void takeAction(Robot turningRobot, Robot notTurningRobot, String playerName, Map map, PowerUp[] powerUps) {
         RobotView.printStats(turningRobot);
         String actionType = GameView.getActionType(turningRobot, playerName);
 
@@ -37,8 +50,8 @@ public class GameController {
                 align(turningRobot, GameView.getAlignDirection(turningRobot, GameView.getAlignDirection(turningRobot, playerName)));
                 break;
         }
-        checkPowerUp(turningRobot, notTurningRobot, powerUps);
-        MapView.drawMap(map, turningRobot, notTurningRobot, powerUps, obstacles);
+        checkPowerUp(turningRobot, powerUps);
+        MapView.drawMap(map, turningRobot, notTurningRobot, powerUps);
     }
 
 
@@ -52,8 +65,8 @@ public class GameController {
 
 
     public static void attack(Robot turningRobot, Robot notTurningRobot) {
+        turningRobot.setHasAttackedThisRound(true);
         if (GameValidationController.aligned(turningRobot, notTurningRobot)) {
-            turningRobot.setHasAttackedThisRound(true);
             RobotController.hit(turningRobot, notTurningRobot);
             System.out.println();
         }
@@ -73,7 +86,7 @@ public class GameController {
     }
 
 
-    public static void checkPowerUp(Robot robot, Robot robot2, PowerUp[] powerUps) {
+    public static void checkPowerUp(Robot robot, PowerUp[] powerUps) {
         for (PowerUp powerUp : powerUps) {
             if (powerUp.isOnField() && powerUp.getY() == robot.getY() && powerUp.getX() == robot.getX()) {
                 PowerUpController.pickedUpBy(robot, powerUp);
