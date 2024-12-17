@@ -2,12 +2,12 @@ package com.btcag.bootcamp.Maps;
 
 public class Map {
 
-    protected char[][] field;
+    protected char[] arrayVersion;
     protected int maxX;
     protected int maxY;
 
     public Map (int maxX, int maxY) {
-        this.field = new char[maxY][maxX];
+        this.arrayVersion = new char[maxX*maxY];
         this.maxX = maxX;
         this.maxY = maxY;
     }
@@ -22,10 +22,10 @@ public class Map {
     }
 
     public char getSpace (int x, int y) {
-        return field[y][x];
+        return arrayVersion[(y-1)*maxX + x];
     }
 
     public void setSpaceYX (int x, int y, char s) {
-        field[y][x] = s;
+        arrayVersion[(y-1)*maxX + x] = s;
     }
 }

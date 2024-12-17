@@ -1,20 +1,20 @@
 package com.btcag.bootcamp.Enitites;
 
-import btc.com.enums.MoveType;
+import com.btcag.bootcamp.Hibernate.Enums.MoveType;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 @Entity(name = "Move")
 @Table(name = "move")
-public class Move {
+public class MoveEntity {
     @Column(name = "move_id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "game_id", nullable = false)
-    private Game game;
+    private GameEntity game;
     @OneToMany(mappedBy = "move", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<RobotManipulator> robotManipulations = new ArrayList<>();
     @Enumerated(EnumType.STRING)
@@ -28,11 +28,11 @@ public class Move {
         this.id = id;
     }
 
-    public Game getGame() {
+    public GameEntity getGame() {
         return game;
     }
 
-    public void setGame(Game game) {
+    public void setGame(GameEntity game) {
         this.game = game;
     }
 

@@ -1,7 +1,9 @@
 package com.btcag.bootcamp.Game;
 
+import com.btcag.bootcamp.Hibernate.Enums.MoveType;
 import com.btcag.bootcamp.Maps.Map;
 import com.btcag.bootcamp.Maps.MapView;
+import com.btcag.bootcamp.Move.Move;
 import com.btcag.bootcamp.PowerUps.PowerUp;
 import com.btcag.bootcamp.PowerUps.PowerUpController;
 import com.btcag.bootcamp.RobotPowerUp.RobotPowerUpController;
@@ -13,8 +15,8 @@ import com.btcag.bootcamp.User.User;
 public class GameController {
 
     public static void takeTurn(Map map, User mainUser, Robot mainRobot, Robot enemyRobot, PowerUp[] powerUps) {
-        while (mainRobot.getMovesLeft() > 0) {
-            GameController.takeAction(mainRobot, enemyRobot, mainUser.getName(), map, powerUps);
+        while (mainRobot.getMovesLeft() > 0 && !GameValidationController.checkWin(mainRobot, enemyRobot)) {
+            GameController.makeMove(mainRobot, enemyRobot, mainUser, map, powerUps);
 
             mainRobot.setMovesLeft(mainRobot.getMovesLeft() - 1);
         }
@@ -23,32 +25,81 @@ public class GameController {
         mainRobot.setHasAttackedThisRound(false);
     }
 
-    public static void takeAction(Robot turningRobot, Robot notTurningRobot, String playerName, Map map, PowerUp[] powerUps) {
+    public static void makeMove(Robot turningRobot, Robot notTurningRobot, User user, Map map, PowerUp[] powerUps) {
+        Move newMove = new Move();
+        newMove.setUserId(user.getUserId());
+
         RobotView.printStats(turningRobot);
-        String actionType = GameView.getActionType(playerName);
+        String actionType = GameView.getActionType(user.getName(), turningRobot);
+
 
         switch (actionType) {
             //Bewegen
             case "1":
-                RobotController.move(turningRobot, notTurningRobot, playerName, map, powerUps, GameView.getMoveDirection(turningRobot, notTurningRobot, playerName));
+
+                newMove.setMoveType(MoveType.MOVE);
+                newMove.setAlignment(GameView.getMoveDirection(turningRobot, notTurningRobot, user.getName()));
                 break;
 
             //Angreifen
             case "2":
-                if (turningRobot.isHasAttackedThisRound()) {
-                    takeAction(turningRobot, notTurningRobot, playerName, map, powerUps);
-                } else {
-                    RobotController.attack(turningRobot, notTurningRobot);
-                }
-                break;
+                    newMove.setMoveType(MoveType.ATTACK);
+                    newMove.setAlignment(turningRobot.getAlignment());
+                    break;
             //Manuell Ausrichten
             case "3":
-                RobotController.align(turningRobot, GameView.getAlignDirection(playerName));
+                //RobotController.align(turningRobot, GameView.getAlignDirection(user.getName()));
+                newMove.setMoveType(MoveType.ALIGN);
+                newMove.setAlignment(GameView.getAlignDirection(user.getName()));
+                break;
+
+            case "4":
+                newMove.setMoveType(MoveType.END);
+                newMove.setAlignment(turningRobot.getAlignment());
+                break;
+
+            case "5":
+                newMove.setMoveType(MoveType.SURRENDER);
+                newMove.setAlignment(turningRobot.getAlignment());
                 break;
         }
+
+        executeMove(newMove, turningRobot, notTurningRobot);
+
         checkPowerUp(turningRobot, powerUps);
         MapView.drawMap(map, turningRobot, notTurningRobot, powerUps);
+
     }
+
+    public static void executeMove (Move move, Robot turningRobot, Robot notTurningRobot) {
+        switch (move.getMoveType()) {
+            case MOVE:
+                RobotController.moveRobot(turningRobot, move.getAlignment());
+                break;
+
+            case ATTACK:
+                RobotController.attack(turningRobot, notTurningRobot);
+                break;
+
+            case ALIGN:
+                RobotController.align(turningRobot, move.getAlignment());
+                break;
+
+            case END:
+                RobotController.endTurn(turningRobot);
+                break;
+
+            case SURRENDER:
+                RobotController.endSelfRobot(turningRobot);
+                break;
+        }
+
+    }
+
+
+
+
+
 
     public static void checkPowerUp(Robot robot, PowerUp[] powerUps) {
         for (PowerUp powerUp : powerUps) {

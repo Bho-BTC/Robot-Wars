@@ -1,13 +1,15 @@
 package com.btcag.bootcamp.Game;
 
+import com.btcag.bootcamp.Move.Move;
 import com.btcag.bootcamp.Robots.Robot;
+import com.btcag.bootcamp.Robots.alignment;
 
 import java.util.Scanner;
 
 public class GameView {
 
 
-    public static String getActionType(String playerName) {
+    public static String getActionType(String playerName, Robot robot) {
         Scanner scanner = new Scanner(System.in);
         String input;
 
@@ -16,9 +18,11 @@ public class GameView {
             System.out.println("(1) Bewegen");
             System.out.println("(2) Angreifen");
             System.out.println("(3) Manuell Drehen");
+            System.out.println("(4) Zug beenden");
+            System.out.println("(5) Dich beenden");
 
             input = scanner.next();
-        } while (!input.equals("1") && !input.equals("2") && !input.equals("3"));
+        } while (!input.equals("1") && !input.equals("2") && !input.equals("3") && !input.equals("4") && !input.equals("5") || input.equals("2") && robot.isHasAttackedThisRound());
 
 
         return input;
@@ -61,7 +65,7 @@ public class GameView {
     }
 
 
-    public static String getMoveDirection(Robot turningRobot, Robot notTurningRobot, String playerName) {
+    public static alignment getMoveDirection(Robot turningRobot, Robot notTurningRobot, String playerName) {
         Scanner scanner = new Scanner(System.in);
         String direction;
         do {
@@ -74,27 +78,37 @@ public class GameView {
             direction = scanner.nextLine();
         } while (!GameValidationController.validDirection(direction, turningRobot, notTurningRobot));
 
-        return direction;
+
+        return getAlignmentForDirection(direction);
     }
 
 
-    public static String getAlignDirection(String playerName) {
+    public static alignment getAlignmentForDirection(String direction) {
+        for (alignment alignment : alignment.values()) {
+            if (direction.equals(alignment.key)) {
+                return alignment;
+            }
+        }
+    return alignment.NORTH;
+    }
+
+
+    public static alignment getAlignDirection(String playerName) {
         Scanner scanner = new Scanner(System.in);
         String direction;
         do {
             System.out.println();
-            System.out.println(playerName + ", in welche Richtung willst du dich drehen? (Q, W, E, A, D, Y, S, X) oder P um nichts zu tun.");
+            System.out.println(playerName + ", in welche Richtung willst du dich drehen? (Q, W, E, A, D, Y, S, X)");
             System.out.println("    Q    W    E");
             System.out.println("    A   You   D");
             System.out.println("    Y    S    X");
             direction = scanner.nextLine();
-        } while (   !direction.equalsIgnoreCase("Q") && !direction.equalsIgnoreCase("W") && !direction.equalsIgnoreCase("E")
-                &&  !direction.equalsIgnoreCase("A") && !direction.equalsIgnoreCase("S") && !direction.equalsIgnoreCase("D")
-                &&  !direction.equalsIgnoreCase("Y") && !direction.equalsIgnoreCase("X") && !direction.equalsIgnoreCase("P"));
+        } while (!direction.equalsIgnoreCase("Q") && !direction.equalsIgnoreCase("W") && !direction.equalsIgnoreCase("E")
+                && !direction.equalsIgnoreCase("A") && !direction.equalsIgnoreCase("S") && !direction.equalsIgnoreCase("D")
+                && !direction.equalsIgnoreCase("Y") && !direction.equalsIgnoreCase("X") && !direction.equalsIgnoreCase("P"));
 
-        return direction;
+        return getAlignmentForDirection(direction);
     }
-
 
 
     public static void printMissHitMessage() {
@@ -102,7 +116,7 @@ public class GameView {
     }
 
     public static void printWallHitMessage() {
-       System.out.println("Du hast eine wand getroffen");
+        System.out.println("Du hast eine wand getroffen");
     }
 
     public static void printWinMessage(String winner) {

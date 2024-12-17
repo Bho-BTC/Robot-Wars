@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity(name = "Map")
 @Table(name = "map")
-public class Map {
+public class MapEntity {
     @Column(name = "map_id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +21,7 @@ public class Map {
     @OneToMany(mappedBy = "map", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MapItem> mapItems;
     @OneToMany(mappedBy = "map", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Game> games = new ArrayList<>();
+    private List<GameEntity> games = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -59,15 +59,13 @@ public class Map {
         return mapItems;
     }
 
-    public void setMapItems(List<MapItem> mapItems) {
-        this.mapItems = mapItems;
-    }
+    public void setMapItems(List<MapItem> mapItems) {this.mapItems = mapItems;}
 
-    public List<Game> getGames() {
+    public List<GameEntity> getGames() {
         return games;
     }
 
-    public void addGame(Game game) {
+    public void addGame(GameEntity game) {
         this.games.add(game);
         game.setMap(this);
     }

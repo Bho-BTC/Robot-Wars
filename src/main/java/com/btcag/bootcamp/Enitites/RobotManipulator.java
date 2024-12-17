@@ -1,6 +1,6 @@
 package com.btcag.bootcamp.Enitites;
 
-import btc.com.enums.Align;
+import com.btcag.bootcamp.Hibernate.Enums.Align;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public class RobotManipulator {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "move_id", nullable = false)
-    private Move move;
+    private MoveEntity move;
     @Column(name = "align")
     @Enumerated(EnumType.STRING)
     private Align align;
@@ -23,7 +23,7 @@ public class RobotManipulator {
     @JoinColumn(name = "robot_id", nullable = false)
     private Robot robot;
     @OneToMany(mappedBy = "robotManipulator", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Item> items = new ArrayList<>();
+    private List<ItemEntity> items = new ArrayList<>();
     @Column(name = "health_manipulator")
     private int healthManipulator;
     @Column(name = "attack_damage_manipulator")
@@ -43,11 +43,11 @@ public class RobotManipulator {
         this.id = id;
     }
 
-    public Move getMove() {
+    public MoveEntity getMove() {
         return move;
     }
 
-    public void setMove(Move move) {
+    public void setMove(MoveEntity move) {
         this.move = move;
     }
 
@@ -67,11 +67,11 @@ public class RobotManipulator {
         this.robot = robot;
     }
 
-    public List<Item> getItems() {
+    public List<ItemEntity> getItems() {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(List<ItemEntity> items) {
         this.items = items;
     }
 

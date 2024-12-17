@@ -1,37 +1,29 @@
 package com.btcag.bootcamp.Robots;
 
 import com.btcag.bootcamp.Game.GameValidationController;
-import com.btcag.bootcamp.Maps.Map;
-import com.btcag.bootcamp.PowerUps.PowerUp;
-import com.btcag.bootcamp.RobotPowerUp.RobotPowerUpController;
+import com.btcag.bootcamp.Move.Move;
 
 public class RobotController {
-    public static void moveRobot(Robot robot, String key) {
-        for( alignment direction: alignment.values()) {
-            if(key.equals(direction.key)) {
+    public static void moveRobot(Robot robot, alignment direction) {
                 robot.setAlignment(direction);
                 robot.setY(robot.getY() + direction.y);
                 robot.setX(robot.getX() + direction.x);
-            }
-        }
     }
 
-    public static void move(Robot turningRobot, Robot notTurningRobot, String playerName, Map map, PowerUp[] powerUps, String direction) {
-        switch (direction) {
-            case "P":
-                break;
 
-            default:
-                RobotController.moveRobot(turningRobot, direction);
-        }
+
+    public static void endTurn(Robot turningRobot) {
+        turningRobot.setMovesLeft(0);
     }
 
-    public static void align(Robot turningRobot, String direction) {
-        for (alignment alignment : alignment.values()) {
-            if (direction.equals(alignment.key)) {
+    public static void endSelfRobot(Robot turningRobot) {
+        turningRobot.setCurrentHp(0);
+        endTurn(turningRobot);
+    }
+
+
+    public static void align(Robot turningRobot, alignment alignment) {
                 turningRobot.setAlignment(alignment);
-            }
-        }
     }
 
     public static void attack(Robot turningRobot, Robot notTurningRobot) {
@@ -46,13 +38,8 @@ public class RobotController {
     public static void hit(Robot robot, Robot targetRobot) {
         int tempDmg = robot.getDmg();
 
-        if (targetRobot.getCurrentShield() < tempDmg) {
-            tempDmg -= targetRobot.getCurrentShield();
-            targetRobot.setCurrentShield(0);
             targetRobot.setCurrentHp(targetRobot.getCurrentHp() - tempDmg);
-        } else {
-            targetRobot.setCurrentShield(targetRobot.getCurrentShield() - tempDmg);
-        }
+
 
         RobotView.printHitMessage(targetRobot);
     }
@@ -63,37 +50,23 @@ public class RobotController {
         while (robot.getSkillPoints() > 0) {
             do {
                 in = RobotView.getSkillpointInput(robot);
-            } while (in != 1 && in != 2 && in != 3 && in != 4 && in != 5 && in != 6 && in != 7 && in != 8);
+            } while (in != 1 && in != 2 && in != 3 && in != 4 );
             switch (in) {
                 case 1:
                     robot.setMaxLifePoints(robot.getMaxLifePoints() + 1);
                     break;
 
+
                 case 2:
-                    robot.setMaxEnergy(robot.getMaxEnergy() + 1);
-                    break;
-
-                case 3:
-                    robot.setMaxShield(robot.getMaxShield() + 1);
-                    break;
-
-                case 4:
                     robot.setDmg(robot.getDmg() + 1);
                     break;
 
-                case 5:
+                case 3:
                     robot.setRange(robot.getRange() + 1);
                     break;
 
-                case 6:
-                    robot.setAreaOfEffect(robot.getAreaOfEffect() + 1);
-                    break;
 
-                case 7:
-                    robot.setAccuracy(robot.getAccuracy() + 1);
-                    break;
-
-                case 8:
+                case 4:
                     robot.setMovement(robot.getMovement() + 1);
                     break;
             }

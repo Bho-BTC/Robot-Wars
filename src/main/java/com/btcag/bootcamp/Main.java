@@ -10,13 +10,13 @@ public class Main {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Game.class)
-                .addAnnotatedClass(Map.class)
+                .addAnnotatedClass(GameEntity.class)
+                .addAnnotatedClass(MapEntity.class)
                 .addAnnotatedClass(MapItem.class)
                 .addAnnotatedClass(Robot.class)
-                .addAnnotatedClass(Item.class)
+                .addAnnotatedClass(ItemEntity.class)
                 .addAnnotatedClass(RobotManipulator.class)
-                .addAnnotatedClass(Move.class)
+                .addAnnotatedClass(MoveEntity.class)
                 .buildSessionFactory();
 
         try (Session session = factory.openSession()) {

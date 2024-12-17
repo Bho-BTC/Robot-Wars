@@ -1,6 +1,6 @@
 package com.btcag.bootcamp.Enitites;
 
-import btc.com.enums.MapItemType;
+import com.btcag.bootcamp.Hibernate.Enums.MapItemType;
 import jakarta.persistence.*;
 
 @Entity(name = "MapItem")
@@ -16,7 +16,7 @@ public class MapItem {
     private int index;
     @ManyToOne
     @JoinColumn(name="map_id", nullable=false)
-    private Map map;
+    private MapEntity map;
 
     public Long getId() {
         return id;
@@ -42,11 +42,11 @@ public class MapItem {
         this.index = index;
     }
 
-    public Map getMap() {
+    public MapEntity getMap() {
         return map;
     }
 
-    public void setMap(Map map) {
+    public void setMap(MapEntity map) {
         this.map = map;
     }
 }

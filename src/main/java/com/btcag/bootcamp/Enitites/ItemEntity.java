@@ -1,11 +1,11 @@
 package com.btcag.bootcamp.Enitites;
 
-import btc.com.enums.ItemType;
+import com.btcag.bootcamp.Hibernate.Enums.ItemType;
 import jakarta.persistence.*;
 
 @Entity(name = "Item")
 @Table(name = "item")
-public class Item {
+public class ItemEntity {
     @Column(name = "item_id")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

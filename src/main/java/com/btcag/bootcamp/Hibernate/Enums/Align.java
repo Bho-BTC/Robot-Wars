@@ -1,4 +1,4 @@
-package com.btcag.bootcamp.Enums;
+package com.btcag.bootcamp.Hibernate.Enums;
 
 public enum Align {
     N,

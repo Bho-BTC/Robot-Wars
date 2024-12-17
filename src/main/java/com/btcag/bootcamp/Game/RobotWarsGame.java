@@ -16,14 +16,14 @@ public class RobotWarsGame {
         char wallChar = 219;
 
         //2 Nutzer mit jeweils einem Roboter erstellen
-        User user1 = new User("Spieler 1");
+        User user1 = new User("Spieler 1",1);
         Robot player1 = new Robot(1, 7, map);
-        User user2 = new User("Spieler 2");
+        User user2 = new User("Spieler 2",2);
         Robot player2 = new Robot(15, 7, map);
         Robot[] robots = new Robot[]{player1, player2};
         System.out.println("Nach Robotern");
-        //Zählervariable für Züge erstellen und Roboter Startpositionen festlegen
-        int nextTurn = 1;
+        //Zähler variable für Züge erstellen und Roboter Startpositionen festlegen
+        int TurnCount = 1;
 
         //Powerups starten
         PowerUp[] powerUps = {new PowerUp(7, 7, map), new PowerUp(6, 6, map), new PowerUp(8, 8, map)};
@@ -34,14 +34,15 @@ public class RobotWarsGame {
         while (!GameValidationController.checkWin(player1, player2)) {
             MapView.drawMap(map, player1, player2, powerUps);
             //Spieler 1
-            if (nextTurn == 1) {
+            if (TurnCount % 2 == 1) {
                 GameController.takeTurn(map, user1, player1, player2, powerUps);
-                nextTurn = 2;
-            } else if (nextTurn == 2) {
+
+            } else if (TurnCount % 2 != 1) {
                 //Spieler 2
                 GameController.takeTurn(map, user2, player2, player1, powerUps);
-                nextTurn = 1;
+
             }
+            TurnCount++;
             for (PowerUp powerUp : powerUps) {
                 PowerUpController.update(powerUp);
             }
