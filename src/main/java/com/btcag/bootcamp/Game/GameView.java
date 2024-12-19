@@ -1,6 +1,7 @@
 package com.btcag.bootcamp.Game;
 
 import com.btcag.bootcamp.Move.Move;
+import com.btcag.bootcamp.Obstacles.Walls;
 import com.btcag.bootcamp.Robots.Robot;
 import com.btcag.bootcamp.Robots.alignment;
 
@@ -65,7 +66,7 @@ public class GameView {
     }
 
 
-    public static alignment getMoveDirection(Robot turningRobot, Robot notTurningRobot, String playerName) {
+    public static alignment getMoveDirection(Robot turningRobot, Robot[] robots, String playerName, Walls[] walls) {
         Scanner scanner = new Scanner(System.in);
         String direction;
         do {
@@ -76,7 +77,7 @@ public class GameView {
             System.out.println("    Y    S    X");
             System.out.println("Du kannst nicht auf das selbe Feld laufen, auf dem dein Gegner steht und auch nicht aus dem Spielfeld gehen.");
             direction = scanner.nextLine();
-        } while (!GameValidationController.validDirection(direction, turningRobot, notTurningRobot));
+        } while (!GameValidationController.validDirection(direction, turningRobot, robots, walls));
 
 
         return getAlignmentForDirection(direction);

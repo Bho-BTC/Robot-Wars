@@ -1,28 +1,43 @@
 package com.btcag.bootcamp.Game;
 
 import com.btcag.bootcamp.Obstacles.Walls;
-import com.btcag.bootcamp.PowerUps.PowerUpController;
 import com.btcag.bootcamp.Robots.Robot;
-import com.btcag.bootcamp.Robots.alignment;
 
 import javax.swing.*;
 
 public class GameValidationController {
 
-    public static boolean checkWin(Robot robot1, Robot robot2) {
-        return !(robot1.getCurrentHp() > 0) || !(robot2.getCurrentHp() > 0);
+    public static boolean checkWin(Robot[] robots) {
+        int aliveCount = 0;
+        for (Robot robot : robots) {
+            if (robot.getCurrentHp() > 0) {
+                aliveCount++;
+            }
+        }
+        return aliveCount == 1;
     }
 
-    protected static boolean checkWall(int x, int y) {
-        for (Walls wall : Walls.values()) {
-            if (y == wall.y && x == wall.x) {
+    protected static boolean checkWall(int x, int y, Walls[] walls) {
+        for (Walls wall : walls) {
+            if (y == wall.getY() && x == wall.getX()) {
                 return true;
             }
         }
         return false;
     }
 
-    public static boolean validDirection(String direction, Robot turningRobot, Robot notTurningRobot) {
+
+    public static boolean checkCordsForRobot(int x, int y, Robot[] robots) {
+        for (Robot robot : robots) {
+            if (x == robot.getX() && y == robot.getY()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public static boolean validDirection(String direction, Robot turningRobot, Robot[] robots, Walls[] walls) {
         if (!direction.equals("Q") && !direction.equals("W") && !direction.equals("E")
                 && !direction.equals("A") && !direction.equals("S") && !direction.equals("D")
                 && !direction.equals("Y") && !direction.equals("X") && !direction.equals("P")) {
@@ -34,8 +49,7 @@ public class GameValidationController {
             case "Q":
                 wouldBeX = turningRobot.getX() - 1;
                 wouldBeY = turningRobot.getY() - 1;
-                if ((wouldBeX == notTurningRobot.getX() && wouldBeY == notTurningRobot.getY())
-                        || wouldBeX < 1 || wouldBeY < 1 || checkWall(wouldBeX, wouldBeY)) {
+                if (checkCordsForRobot(wouldBeX, wouldBeY, robots) || wouldBeX < 1 || wouldBeY < 1 || checkWall(wouldBeX, wouldBeY, walls)) {
                     return false;
                 }
                 break;
@@ -43,7 +57,7 @@ public class GameValidationController {
             case "W":
                 wouldBeX = turningRobot.getX();
                 wouldBeY = turningRobot.getY() - 1;
-                if ((wouldBeY == notTurningRobot.getY() && wouldBeX == notTurningRobot.getX()) || wouldBeY < 1 || checkWall(wouldBeX, wouldBeY)) {
+                if (checkCordsForRobot(wouldBeX, wouldBeY, robots) || wouldBeY < 1 || checkWall(wouldBeX, wouldBeY, walls)) {
                     return false;
                 }
                 break;
@@ -51,8 +65,7 @@ public class GameValidationController {
             case "E":
                 wouldBeX = turningRobot.getX() + 1;
                 wouldBeY = turningRobot.getY() - 1;
-                if ((wouldBeX == notTurningRobot.getX() && wouldBeY == notTurningRobot.getY())
-                        || wouldBeX > 15 || wouldBeY < 1 || checkWall(wouldBeX, wouldBeY)) {
+                if (checkCordsForRobot(wouldBeX, wouldBeY, robots) || wouldBeX > 15 || wouldBeY < 1 || checkWall(wouldBeX, wouldBeY, walls)) {
                     return false;
                 }
                 break;
@@ -60,8 +73,7 @@ public class GameValidationController {
             case "A":
                 wouldBeX = turningRobot.getX() - 1;
                 wouldBeY = turningRobot.getY();
-                if ((wouldBeX == notTurningRobot.getX() && wouldBeY == notTurningRobot.getY())
-                        || wouldBeX < 1 || checkWall(wouldBeX, wouldBeY)) {
+                if (checkCordsForRobot(wouldBeX, wouldBeY, robots) || wouldBeX < 1 || checkWall(wouldBeX, wouldBeY, walls)) {
                     return false;
                 }
                 break;
@@ -69,8 +81,7 @@ public class GameValidationController {
             case "D":
                 wouldBeX = turningRobot.getX() + 1;
                 wouldBeY = turningRobot.getY();
-                if ((wouldBeX == notTurningRobot.getX() && wouldBeY == notTurningRobot.getY())
-                        || wouldBeX > 15 || checkWall(wouldBeX, wouldBeY)) {
+                if (checkCordsForRobot(wouldBeX, wouldBeY, robots) || wouldBeX > 15 || checkWall(wouldBeX, wouldBeY, walls)) {
                     return false;
                 }
                 break;
@@ -78,8 +89,7 @@ public class GameValidationController {
             case "Y":
                 wouldBeX = turningRobot.getX() - 1;
                 wouldBeY = turningRobot.getY() + 1;
-                if ((wouldBeX == notTurningRobot.getX() && wouldBeY == notTurningRobot.getY())
-                        || wouldBeX < 1 || wouldBeY > 15 || checkWall(wouldBeX, wouldBeY)) {
+                if (checkCordsForRobot(wouldBeX, wouldBeY, robots) || wouldBeX < 1 || wouldBeY > 15 || checkWall(wouldBeX, wouldBeY, walls)) {
                     return false;
                 }
                 break;
@@ -87,8 +97,7 @@ public class GameValidationController {
             case "X":
                 wouldBeX = turningRobot.getX() + 1;
                 wouldBeY = turningRobot.getY() + 1;
-                if ((wouldBeX == notTurningRobot.getX() && wouldBeY == notTurningRobot.getY())
-                        || wouldBeX > 15 || wouldBeY > 15 || checkWall(wouldBeX, wouldBeY)) {
+                if (checkCordsForRobot(wouldBeX, wouldBeY, robots) || wouldBeX > 15 || wouldBeY > 15 || checkWall(wouldBeX, wouldBeY, walls)) {
                     return false;
                 }
                 break;
@@ -97,8 +106,7 @@ public class GameValidationController {
             case "S":
                 wouldBeX = turningRobot.getX();
                 wouldBeY = turningRobot.getY() + 1;
-                if ((wouldBeY == notTurningRobot.getY() && wouldBeX == notTurningRobot.getX())
-                        || wouldBeY > 15 || checkWall(wouldBeX, wouldBeY)) {
+                if (checkCordsForRobot(wouldBeX, wouldBeY, robots) || wouldBeY > 15 || checkWall(wouldBeX, wouldBeY, walls)) {
                     return false;
                 }
                 break;
@@ -129,15 +137,15 @@ public class GameValidationController {
     }
 
 
-    public static boolean aligned(Robot robot1, Robot robot2) {
+    public static boolean aligned(Robot robot1, Robot[] robots, Walls[] walls) {
         int tempX = robot1.getX();
         int tempY = robot1.getY();
         for (int i = 1; i <= robot1.getRange(); i++) {
             tempX += robot1.getAlignment().x;
             tempY += robot1.getAlignment().y;
-            if (tempX == robot2.getX() && tempY == robot2.getY()) {
+            if (checkCordsForRobot(tempX, tempY, robots)) {
                 return true;
-            } else if (checkWall(tempX, tempY)) {
+            } else if (checkWall(tempX, tempY, walls)) {
                 GameView.printWallHitMessage();
                 return false;
             }

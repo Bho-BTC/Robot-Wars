@@ -1,5 +1,6 @@
 package com.btcag.bootcamp.Hibernate.Services;
 
+import com.btcag.bootcamp.Enitites.MoveEntity;
 import com.btcag.bootcamp.Game.RobotWarsGame;
 import com.btcag.bootcamp.Hibernate.Interfaces.IGameServices;
 import com.btcag.bootcamp.Move.Move;
@@ -9,9 +10,9 @@ import java.util.ArrayList;
 
 public class GameService implements IGameServices {
     @Override
-    public RobotWarsGame getGame(int id) {
+    public RobotWarsGame getGame(int id){
         return null;
-    };
+    }
 
     @Override
     public RobotWarsGame createGame(int playerCount, int MapID, ArrayList<Robot> robots) {
@@ -29,7 +30,7 @@ public class GameService implements IGameServices {
     };
 
     @Override
-    public Move getMove(int gameID, int moveID) {
+    public MoveEntity getMove(int gameID, int moveID) {
         return null;
     }
 

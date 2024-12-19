@@ -1,15 +1,26 @@
 package com.btcag.bootcamp.Robots;
 
 import com.btcag.bootcamp.Game.GameValidationController;
+import com.btcag.bootcamp.Game.GameView;
 import com.btcag.bootcamp.Move.Move;
+import com.btcag.bootcamp.Obstacles.Walls;
 
 public class RobotController {
     public static void moveRobot(Robot robot, alignment direction) {
-                robot.setAlignment(direction);
-                robot.setY(robot.getY() + direction.y);
-                robot.setX(robot.getX() + direction.x);
+        robot.setAlignment(direction);
+        robot.setY(robot.getY() + direction.y);
+        robot.setX(robot.getX() + direction.x);
     }
 
+
+    public static Robot getRobotOnXY(int x, int y, Robot[] robots) {
+        for (Robot robot : robots) {
+            if (robot.getX() == x && robot.getY() == y) {
+                return robot;
+            }
+        }
+        return null;
+    }
 
 
     public static void endTurn(Robot turningRobot) {
@@ -23,13 +34,28 @@ public class RobotController {
 
 
     public static void align(Robot turningRobot, alignment alignment) {
-                turningRobot.setAlignment(alignment);
+        turningRobot.setAlignment(alignment);
     }
 
-    public static void attack(Robot turningRobot, Robot notTurningRobot) {
+
+    public static Robot getFirstRobotInAlignment(Robot turningRobot, Robot[] robots) {
+        int tempX = turningRobot.getX();
+        int tempY = turningRobot.getY();
+        for (int i = 1; i <= turningRobot.getRange(); i++) {
+            tempX += turningRobot.getAlignment().x;
+            tempY += turningRobot.getAlignment().y;
+            if (GameValidationController.checkCordsForRobot(tempX, tempY, robots)) {
+                return getRobotOnXY(tempX, tempY, robots);
+            }
+        }
+        return null;
+    }
+
+
+    public static void attack(Robot turningRobot, Robot[] robots, Walls[] walls) {
         turningRobot.setHasAttackedThisRound(true);
-        if (GameValidationController.aligned(turningRobot, notTurningRobot)) {
-            RobotController.hit(turningRobot, notTurningRobot);
+        if (GameValidationController.aligned(turningRobot, robots, walls)) {
+            RobotController.hit(turningRobot, getFirstRobotInAlignment(turningRobot, robots));
             System.out.println();
         }
     }
@@ -38,7 +64,7 @@ public class RobotController {
     public static void hit(Robot robot, Robot targetRobot) {
         int tempDmg = robot.getDmg();
 
-            targetRobot.setCurrentHp(targetRobot.getCurrentHp() - tempDmg);
+        targetRobot.setCurrentHp(targetRobot.getCurrentHp() - tempDmg);
 
 
         RobotView.printHitMessage(targetRobot);
@@ -50,7 +76,7 @@ public class RobotController {
         while (robot.getSkillPoints() > 0) {
             do {
                 in = RobotView.getSkillpointInput(robot);
-            } while (in != 1 && in != 2 && in != 3 && in != 4 );
+            } while (in != 1 && in != 2 && in != 3 && in != 4);
             switch (in) {
                 case 1:
                     robot.setMaxLifePoints(robot.getMaxLifePoints() + 1);
@@ -73,7 +99,6 @@ public class RobotController {
             robot.setSkillPoints(robot.getSkillPoints() - 1);
         }
         RobotView.printFinalStats(robot);
-
     }
 
 

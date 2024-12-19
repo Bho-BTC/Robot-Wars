@@ -1,5 +1,6 @@
 package com.btcag.bootcamp.Hibernate.Services;
 
+import com.btcag.bootcamp.Enitites.PlayerEntity;
 import com.btcag.bootcamp.Hibernate.Interfaces.IPlayerServices;
 import com.btcag.bootcamp.User.User;
 
@@ -12,7 +13,7 @@ public class PlayerService implements IPlayerServices {
     };
 
     @Override
-    public User getPlayer(int id) {
+    public PlayerEntity getPlayer(int id) {
         return null;
     }
 

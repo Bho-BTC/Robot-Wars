@@ -21,7 +21,7 @@ public class RobotManipulator {
     private Align align;
     @ManyToOne
     @JoinColumn(name = "robot_id", nullable = false)
-    private Robot robot;
+    private RobotEntity robotEntity;
     @OneToMany(mappedBy = "robotManipulator", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemEntity> items = new ArrayList<>();
     @Column(name = "health_manipulator")
@@ -59,12 +59,12 @@ public class RobotManipulator {
         this.align = align;
     }
 
-    public Robot getRobot() {
-        return robot;
+    public RobotEntity getRobot() {
+        return robotEntity;
     }
 
-    public void setRobot(Robot robot) {
-        this.robot = robot;
+    public void setRobot(RobotEntity robotEntity) {
+        this.robotEntity = robotEntity;
     }
 
     public List<ItemEntity> getItems() {

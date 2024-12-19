@@ -26,7 +26,7 @@ public class Robot {
     private int currentHp;
     private int dmg = 1;
     private int range = 1;
-    private int skillPoints = 10;
+    private int skillPoints = 0;
     private int movement = 3;
     private int movesLeft = movement;
 
@@ -39,10 +39,9 @@ public class Robot {
         this.movesLeft = movesLeft;
     }
 
-    public Robot(int x, int y, Map map) {
+    public Robot() {
         this.alignment = com.btcag.bootcamp.Robots.alignment.NORTH;
-        this.x = x;
-        this.y = y;
+
         RobotView.chooseRobotAvatar(this, "Geben sie ein zugelassenes ASCII Zeichen an, mit dem der Roboter auf dem Spielfeld ausgegeben soll.");
         RobotController.getStats(this);
         this.currentHp = MaxLifePoints;

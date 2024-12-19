@@ -4,6 +4,7 @@ import com.btcag.bootcamp.Hibernate.Enums.MoveType;
 import com.btcag.bootcamp.Maps.Map;
 import com.btcag.bootcamp.Maps.MapView;
 import com.btcag.bootcamp.Move.Move;
+import com.btcag.bootcamp.Obstacles.Walls;
 import com.btcag.bootcamp.PowerUps.PowerUp;
 import com.btcag.bootcamp.PowerUps.PowerUpController;
 import com.btcag.bootcamp.RobotPowerUp.RobotPowerUpController;
@@ -14,9 +15,9 @@ import com.btcag.bootcamp.User.User;
 
 public class GameController {
 
-    public static void takeTurn(Map map, User mainUser, Robot mainRobot, Robot enemyRobot, PowerUp[] powerUps) {
-        while (mainRobot.getMovesLeft() > 0 && !GameValidationController.checkWin(mainRobot, enemyRobot)) {
-            GameController.makeMove(mainRobot, enemyRobot, mainUser, map, powerUps);
+    public static void takeTurn(Map map, User mainUser, Robot mainRobot, Robot[] robots, PowerUp[] powerUps, Walls[] walls) {
+        while (mainRobot.getMovesLeft() > 0 && !GameValidationController.checkWin(robots)) {
+            GameController.makeMove(mainRobot, robots, mainUser, map, powerUps, walls);
 
             mainRobot.setMovesLeft(mainRobot.getMovesLeft() - 1);
         }
@@ -25,7 +26,7 @@ public class GameController {
         mainRobot.setHasAttackedThisRound(false);
     }
 
-    public static void makeMove(Robot turningRobot, Robot notTurningRobot, User user, Map map, PowerUp[] powerUps) {
+    public static void makeMove(Robot turningRobot, Robot[] robots, User user, Map map, PowerUp[] powerUps, Walls[] walls) {
         Move newMove = new Move();
         newMove.setUserId(user.getUserId());
 
@@ -38,14 +39,14 @@ public class GameController {
             case "1":
 
                 newMove.setMoveType(MoveType.MOVE);
-                newMove.setAlignment(GameView.getMoveDirection(turningRobot, notTurningRobot, user.getName()));
+                newMove.setAlignment(GameView.getMoveDirection(turningRobot, robots, user.getName(), walls));
                 break;
 
             //Angreifen
             case "2":
-                    newMove.setMoveType(MoveType.ATTACK);
-                    newMove.setAlignment(turningRobot.getAlignment());
-                    break;
+                newMove.setMoveType(MoveType.ATTACK);
+                newMove.setAlignment(turningRobot.getAlignment());
+                break;
             //Manuell Ausrichten
             case "3":
                 //RobotController.align(turningRobot, GameView.getAlignDirection(user.getName()));
@@ -64,21 +65,21 @@ public class GameController {
                 break;
         }
 
-        executeMove(newMove, turningRobot, notTurningRobot);
+        executeMove(newMove, turningRobot, robots, walls);
 
         checkPowerUp(turningRobot, powerUps);
-        MapView.drawMap(map, turningRobot, notTurningRobot, powerUps);
+        MapView.drawMap(map, robots, powerUps, walls);
 
     }
 
-    public static void executeMove (Move move, Robot turningRobot, Robot notTurningRobot) {
+    public static void executeMove(Move move, Robot turningRobot, Robot[] robots, Walls[] walls) {
         switch (move.getMoveType()) {
             case MOVE:
                 RobotController.moveRobot(turningRobot, move.getAlignment());
                 break;
 
             case ATTACK:
-                RobotController.attack(turningRobot, notTurningRobot);
+                RobotController.attack(turningRobot, robots, walls);
                 break;
 
             case ALIGN:
@@ -95,10 +96,6 @@ public class GameController {
         }
 
     }
-
-
-
-
 
 
     public static void checkPowerUp(Robot robot, PowerUp[] powerUps) {

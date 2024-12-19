@@ -14,7 +14,7 @@ public class PowerUp {
     private int roundsToRespawn = 5;
 
 
-    public PowerUp(int x, int y, Map map) {
+    public PowerUp(int x, int y) {
         this.x = x;
         this.y = y;
     }

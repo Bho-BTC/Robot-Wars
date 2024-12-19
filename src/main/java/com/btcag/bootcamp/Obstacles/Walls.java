@@ -1,25 +1,28 @@
 package com.btcag.bootcamp.Obstacles;
 
-public enum Walls {
-    Wall1(5, 7, '/'),
-    Wall2(5, 6, '/'),
-    Wall3(5, 5, '/'),
-    Wall4(10, 5, '/'),
-    Wall5(10, 6, '/'),
-    Wall6(10, 7, '/'),
-    Wall7(7, 6, '/'),
-    Wall8(7, 8, '/'),
-    ;
+public class Walls {
+    private int x;
+    private int y;
+    private final char avatar = '/';
 
-    public final int x;
-    public final int y;
-    public final char key;
 
-    Walls(int x, int y, char key) {
+    public Walls(int x, int y) {
         this.x = x;
         this.y = y;
-        this.key = key;
+    }
 
+
+    public int getX() {
+        return x;
+    }
+    public void setX(int x) {
+        this.x = x;
+    }
+    public int getY() {
+        return y;
+    }
+    public void setY(int y) {
+        this.y = y;
     }
 
 }

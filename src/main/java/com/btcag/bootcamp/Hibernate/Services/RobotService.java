@@ -1,5 +1,6 @@
 package com.btcag.bootcamp.Hibernate.Services;
 
+import com.btcag.bootcamp.Enitites.RobotEntity;
 import com.btcag.bootcamp.Hibernate.Interfaces.IRobotServices;
 import com.btcag.bootcamp.User.User;
 import com.btcag.bootcamp.Robots.Robot;
@@ -12,11 +13,11 @@ public class RobotService implements IRobotServices {
         return null;
     }
 
-    public Robot getRobot(int robotID) {
+    public RobotEntity getRobot(int robotID) {
         return null;
     }
 
-    public Robot createRobot(User user) {
+    public RobotEntity createRobot(User user) {
         return null;
     }
 }

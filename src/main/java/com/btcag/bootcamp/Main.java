@@ -13,7 +13,7 @@ public class Main {
                 .addAnnotatedClass(GameEntity.class)
                 .addAnnotatedClass(MapEntity.class)
                 .addAnnotatedClass(MapItem.class)
-                .addAnnotatedClass(Robot.class)
+                .addAnnotatedClass(RobotEntity.class)
                 .addAnnotatedClass(ItemEntity.class)
                 .addAnnotatedClass(RobotManipulator.class)
                 .addAnnotatedClass(MoveEntity.class)

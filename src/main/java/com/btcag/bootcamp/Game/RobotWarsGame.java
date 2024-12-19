@@ -1,45 +1,115 @@
 package com.btcag.bootcamp.Game;
 
 import com.btcag.bootcamp.Maps.Map;
+import com.btcag.bootcamp.Maps.MapController;
 import com.btcag.bootcamp.Maps.MapView;
+import com.btcag.bootcamp.Obstacles.Walls;
 import com.btcag.bootcamp.PowerUps.PowerUp;
 import com.btcag.bootcamp.PowerUps.PowerUpController;
-import com.btcag.bootcamp.RobotPowerUp.RobotPowerUpController;
 import com.btcag.bootcamp.Robots.Robot;
 import com.btcag.bootcamp.User.User;
 
 public class RobotWarsGame {
-    public static void main(String[] args) {
-        //Map erstellen
-        Map map = new Map(15, 15);
-        //
-        char wallChar = 219;
+    private Map map;
+    private Robot[] robots;
+    private User[] users;
+    private PowerUp[] powerUps;
 
-        //2 Nutzer mit jeweils einem Roboter erstellen
-        User user1 = new User("Spieler 1",1);
-        Robot player1 = new Robot(1, 7, map);
-        User user2 = new User("Spieler 2",2);
-        Robot player2 = new Robot(15, 7, map);
-        Robot[] robots = new Robot[]{player1, player2};
-        System.out.println("Nach Robotern");
+
+    public RobotWarsGame(Map map, Robot[] robots, User[] users) {
+        this.map = map;
+        this.robots = robots;
+        this.users = users;
+
+    }
+
+    public void play() {
+
         //Zähler variable für Züge erstellen und Roboter Startpositionen festlegen
         int TurnCount = 1;
 
         //Powerups starten
-        PowerUp[] powerUps = {new PowerUp(7, 7, map), new PowerUp(6, 6, map), new PowerUp(8, 8, map)};
+        int numberOfPowerUps = MapController.getAmountOfThese(map.getPowerUpChar(), map);
+        int[] locationsOfPowerUps = MapController.getLocationOfThese(map.getPowerUpChar(), map, numberOfPowerUps);
+
+        PowerUp[] powerUps = new PowerUp[numberOfPowerUps];
+        int i = 0;
+        for (int location : locationsOfPowerUps) {
+            int x;
+            int y;
+
+            x = location % map.getMaxX();
+
+
+            y = location / map.getMaxY();
+
+            powerUps[i] = new PowerUp(x, y);
+            i++;
+        }
+
+
+        //                  Roboter------------------------------------------------------------------------------
+        int numberOfRobots = MapController.getAmountOfThese(map.getRobotChar(), map);
+        System.out.println(numberOfRobots + " Roboter");
+        int[] locationsOfRobots = MapController.getLocationOfThese(map.getRobotChar(), map, numberOfRobots);
+        System.out.println(locationsOfRobots[0] + " Roboter 1    " + locationsOfRobots[1] + " Roboter 2");
+        int k = 0;
+        for (int location : locationsOfRobots) {
+            int x;
+            int y;
+
+            x = location % map.getMaxX();
+
+
+            y = location / map.getMaxY();
+
+            robots[k].setX(x);
+            robots[k].setY(y);
+            System.out.println("Robot " + robots[k].getAvatar());
+            System.out.println("Location: " + location);
+            System.out.println("X: " + robots[k].getX() + "   Y: " + robots[k].getY());
+            k++;
+        }
+
+//        0 0 0 0 0 5
+//        0 0 0 0 0 10
+//        0 0 0 0 0 15
+//        0 0 0 0 0 20
+//        0 0 0 0 0 25
+//        0 0 0 0 0 30
+
+
+        int numberOfWalls = MapController.getAmountOfThese(map.getWallChar(), map);
+        int[] locationOfWalls = MapController.getLocationOfThese(map.getWallChar(), map, numberOfWalls);
+
+        Walls[] walls = new Walls[numberOfWalls];
+        int j = 0;
+        for (int location : locationOfWalls) {
+            int x;
+            int y;
+
+
+            x = location % map.getMaxX();
+            y = location / map.getMaxY();
+
+            walls[j] = new Walls(x, y);
+            j++;
+        }
+
+
         //Intro abspielen
-        GameView.intro(user1.getName(), user2.getName());
+        GameView.intro(users[0].getName(), users[1].getName());
 
         //Während niemand das Spiel gewonnen hat
-        while (!GameValidationController.checkWin(player1, player2)) {
-            MapView.drawMap(map, player1, player2, powerUps);
+        while (!GameValidationController.checkWin(robots)) {
+            MapView.drawMap(map, robots, powerUps, walls);
             //Spieler 1
             if (TurnCount % 2 == 1) {
-                GameController.takeTurn(map, user1, player1, player2, powerUps);
+                GameController.takeTurn(map, users[0], robots[0], robots, powerUps, walls);
 
             } else if (TurnCount % 2 != 1) {
                 //Spieler 2
-                GameController.takeTurn(map, user2, player2, player1, powerUps);
+                GameController.takeTurn(map, users[1], robots[1], robots, powerUps, walls);
 
             }
             TurnCount++;
@@ -49,7 +119,7 @@ public class RobotWarsGame {
         }
         //Nachdem einer gewonnen hat
         System.out.println();
-        String winner = GameController.getWinner(player1, player2, user1, user2);
+        String winner = GameController.getWinner(robots[0], robots[1], users[0], users[1]);
         GameView.printWinMessage(winner);
     }
 
